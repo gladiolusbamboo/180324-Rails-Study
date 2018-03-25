@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   # 'hoge/page'など無関係なURLを割り当てることも可
   get 'yahoo/index', to: 'yahoo#index'
 
+  get 'yahoo/view'
+
 end
