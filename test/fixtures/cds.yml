@@ -1,0 +1,58 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# フィクスチャによるテストデータの準備
+# （テストデータをデータベースに流し込むための仕組み）
+# rails db:fixtures:load FIXTURES=cds
+# みたいなコマンドでテーブルにテストデータが展開される
+
+# 指定したフィールド以外に
+# id（主キー）,created_at（作成日時）,
+# updated_at（更新日時）フィールドが自動生成される
+
+one:
+  jan: 4526180405252
+  title: 星眠る島
+  price: 1600
+  artist: 宇宙団
+  released: 2017-01-11
+  is_major: false
+
+two:
+  jan: 4526180352792
+  title: インスタント！
+  price: 1800
+  artist: ナマニエルボーイズ
+  released: 2015-08-12 
+  is_major: false
+
+three:
+  jan: 4526180414421
+  title: 僕は停滞気味
+  price: 1500
+  artist: ザ・ロスト・クラブ
+  released: 2017-04-19
+  is_major: false
+
+four:
+  jan: 4526180436577
+  title: BOY'S LIFE
+  price: 2000
+  artist: Kent Funayama
+  released: 2018-01-24
+  is_major: false
+
+five:
+  jan: 4518575736157
+  title: HELLO!!/FEVER
+  price: 1000
+  artist: あヴぁんだんど
+  released: 2017-05-31
+  is_major: false
+
+six:
+  jan: 4988002756452
+  title: 充分未来
+  price: 2000
+  artist: 集団行動
+  released: 2018-02-07
+  is_major: true

@@ -4,14 +4,31 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
+
+# エイリアス(&{エイリアス名})の指定
+# defaultというクラス、あるいは変数を作ってる感じ
 default: &default
+  # 接続するデータベースの種類
   adapter: sqlite3
+  # 確保する接続プール
+  # (データベースへの接続をあらかじめ準備しておき、
+  #  また利用の都度、切断せずに再利用する仕組み)
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # 接続のタイムアウト時間
   timeout: 5000
 
+# 開発環境の設定
 development:
+  # 上で設定したエイリアスを挿入する
+  # <<: *{エイリアス名}
   <<: *default
+  # データベース名（データベースファイル名）
   database: db/development.sqlite3
+  # ↓と指定するのと同等
+  # adapter: sqlite3
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # timeout: 5000
+  # database: db/development.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>JANコード</th>
+    <th>タイトル</th>
+    <th>価格</th>
+    <th>アーティスト</th>
+    <th>リリース日</th>
+    <th>メジャーレーベル？</th>
+  </tr>
+<%# Ruby構文をそのまま埋め込める %>
+<% @cds.each do |cd| %>
+  <tr>
+    <td><%= cd.jan %></td>
+    <td><%= cd.title %></td>
+    <td><%= cd.price %></td>
+    <td><%= cd.artist %></td>
+    <td><%= cd.released %></td>
+    <td><%= cd.is_major %></td>
+  </tr>
+<% end %>
+
+</table>
