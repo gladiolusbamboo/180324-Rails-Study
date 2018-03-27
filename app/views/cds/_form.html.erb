@@ -1,0 +1,47 @@
+<%= form_with(model: cd, local: true) do |form| %>
+  <% if cd.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cd.errors.count, "error") %> prohibited this cd from being saved:</h2>
+
+      <ul>
+      <% cd.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :jan %>
+    <%= form.text_field :jan, id: :cd_jan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :cd_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, id: :cd_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :artist %>
+    <%= form.text_field :artist, id: :cd_artist %>
+  </div>
+
+  <div class="field">
+    <%= form.label :released %>
+    <%= form.date_select :released, id: :cd_released %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_major %>
+    <%= form.check_box :is_major, id: :cd_is_major %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

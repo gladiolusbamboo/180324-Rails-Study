@@ -1,5 +1,16 @@
 # ルーティング設定を指定する
 Rails.application.routes.draw do
+  # resoucesメソッドで以下のようなルーティングが設定される
+  # :formatが省略された場合はhtmlとみなされる
+  # GET    /cds(.:format)          cds#index
+  # POST   /cds(.:format)          cds#create
+  # GET    /cds/new(.:format)      cds#new
+  # GET    /cds/:id/edit(.:format) cds#edit
+  # GET    /cds/:id(.:format)      cds#show
+  # PATCH  /cds/:id(.:format)      cds#update
+  # PUT    /cds/:id(.:format)      cds#update
+  # DELETE /cds/:id(.:format)      cds#destroy
+  resources :cds
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # 'yahoo/index' というURLが要求(GET)されたら
@@ -12,4 +23,5 @@ Rails.application.routes.draw do
   # get 'yahoo/view', to: 'yahoo#view'と同等
 
   get 'yahoo/list'
+  get 'yahoo/hatena'
 end

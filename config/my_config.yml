@@ -1,0 +1,19 @@
+# アプリ固有の設定情報はconfigフォルダ下に
+# 自分で.ymlファイルを作る
+# YAML.load(File.read("#{Rails.root}/config/my_config.yml"))[Rails.env]
+# みたいな書き方で呼び出す
+COMMON: &COMMON
+  author: 'Yuji Koyama'
+  hatena_blog:
+    title: 'カロリーメイトください'
+    url: 'http://yjkym.hatenablog.com/'
+
+development:
+  <<: *COMMON
+
+test:
+  <<: *COMMON
+
+production:
+  <<: *COMMON
+

@@ -36,4 +36,10 @@ class YahooController < ApplicationController
     # インスタンス変数とかは多分
     # ゲッターメソッドで呼び出す。多分
   end
+
+  def hatena
+    # config\initializers\my_config.rb
+    # でアプリ固有の設定情報をMY_APPに読み込んでいる
+    render plain: MY_APP['hatena_blog']['title'] + '：' + MY_APP['hatena_blog']['url']
+  end
 end

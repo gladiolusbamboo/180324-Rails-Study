@@ -1,0 +1,77 @@
+<%# .html.erb はERB(embedded Ruby)を用いて %>
+<%# HTML形式の出力を生成するテンプレートという意味 %>
+<p id="notice"><%= notice %></p>
+
+<h1>Cds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Jan</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th>Artist</th>
+      <th>Released</th>
+      <th>Is major</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cds.each do |cd| %>
+      <tr>
+        <td><%= cd.jan %></td>
+        <td><%= cd.title %></td>
+        <td><%= cd.price %></td>
+        <td><%= cd.artist %></td>
+        <td><%= cd.released %></td>
+        <td><%= cd.is_major %></td>
+
+        <%# link_toメソッド（ビューヘルパー）の単純な使い方 %>
+        <%# Rubyではメソッド呼び出しの括弧を省略できることに注意 %>
+        <%# <%=link_to 'カロリーメイトください', 'http://yjkym.hatenablog.com/', class: 'hoge', title:'page' %_>(アンダーバー不要) %>
+        <%# ↓出力されるHTML %>
+        <%# <a class="hoge" title="page" href="http://yjkym.hatenablog.com/">カロリーメイトください</a> %>
+
+        <%# link_toメソッドの第二引数にオブジェクトが渡されると %>
+        <%# 引数のオブジェクトはキー値を表し %>
+        <%# 現在のパスにオブジェクトのキー値を加えた %>
+        <%# パスが生成される %>
+        <%# ↓出力されるHTML %>
+        <%# <a href="/cds/51848956">Show</a> %>
+        <td><%= link_to 'Show', cd %></td>
+
+        <%# edit_cd_pathもビューヘルパーで %>
+        <%# 引数にidを渡すことで %>
+        <%# /cds/:id/editというパスを返す %>
+        <%# 引数のcdはやはりオブジェクトのキー値を表している %>
+        <%# ↓出力されるHTML %>
+        <%# <a href="/cds/51848956/edit">Edit</a> %>
+        <td><%= link_to 'Edit', edit_cd_path(cd) %></td>
+
+        <%# link_toメソッドにdata-confirmオプションを指定すると %>
+        <%# クリック時に確認ダイアログを表示する %>
+        <%# またmethodオプションを指定することで %>
+        <%# GET以外のHTTPメソッドを利用できる %>
+        <%# ただし内部的には（一般的なブラウザに対応するため） %>
+        <%# POSTメソッドで通信が行われている %>
+        <%# 前置のコロン(:delete)はRubyのシンボルを表し、 %>
+        <%# 「データとして利用されない文字列」を表す？ %>
+        <%# 「列挙されてない列挙体」というイメージでいる %>
+        <%# ↓出力されるHTML %>
+        <%# <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/cds/980190962">Destroy</a> %>
+        <%# no-follow属性はどのタイミングでついたのかな %>
+        <%# method: :deleteを指定したタイミングだろうか %>
+        <td><%= link_to 'Destroy', cd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# new_cd_pathもビューヘルパーで %>
+<%# /cds/newというパスを返す %>
+<%# ↓出力されるHTML %>
+<%# <a href="/cds/new">New Cd</a> %>
+<%= link_to 'New Cd', new_cd_path %>

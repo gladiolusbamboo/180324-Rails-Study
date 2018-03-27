@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Jan:</strong>
+  <%= @cd.jan %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cd.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @cd.price %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @cd.artist %>
+</p>
+
+<p>
+  <strong>Released:</strong>
+  <%= @cd.released %>
+</p>
+
+<p>
+  <strong>Is major:</strong>
+  <%= @cd.is_major %>
+</p>
+
+<%= link_to 'Edit', edit_cd_path(@cd) %> |
+<%= link_to 'Back', cds_path %>
