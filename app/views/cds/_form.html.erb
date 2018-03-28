@@ -1,4 +1,27 @@
+<%# ファイル名の先頭に_をつけることで部分テンプレートであることを宣言している %>
+
+<%# モデルに関連づいたフォームを生成する %>
+<%# 現在はform_forではなくform_withが推奨されている %>
+
+<%# do～endはrubyではブロックと呼ばれ、ひとかたまりの処理を表す %>
+<%# とりあえずdo～endは{}と同等のものとイメージしておく %>
+<%# JavaScriptの無名関数みたいなものだろうか %>
+<%# ブロックの概念はまだはっきりとはイメージできていないが %>
+<%# 引数と同じようにform_withメソッドに渡されていると考えるべきであるようだ %>
+
+<%# ↓出力されるHTML %>
+<%# <form action="/cds" accept-charset="UTF-8" method="post"> %>
+<%# <input name="utf8" type="hidden" value="&#x2713;" /> %>
+<%# <input type="hidden" name="authenticity_token" value="6ZdmXguc0SGCJOO/eP3p24QMOctlyOw2/BFBPaowAjNPtd9jP0hDxv/VL9p5J0bdgdNv4vGQdhufZ6e0vjKnQw==" /> %>
+<%# ブロック内の処理を反映する %>
+<%# </form> %>
+
+<%# <from>タグ以外に出力されているものは %>
+<%# IEの古いバージョンに対応させる文字コード関連の処理と %>
+<%# CSRF脆弱性対策っぽいです %>
 <%= form_with(model: cd, local: true) do |form| %>
+
+  <%# ↓入力値検証で発生したエラー情報を表示するためのコード %>
   <% if cd.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(cd.errors.count, "error") %> prohibited this cd from being saved:</h2>
@@ -10,10 +33,21 @@
       </ul>
     </div>
   <% end %>
+  <%# ↑ここまで %>
 
   <div class="field">
+    <%# .labelも.text_fieldも.number_fieldも %>
+    <%# .date_selectも.check_boxも.submitも %>
+    <%# 全部ビューヘルパー %>
+    <%# formはFormBuilderオブジェクトで %>
+    <%# 出力しようとしているフォームを意味する %>
+    <%# :janは引数として渡したオブジェクトのjanプロパティを表しているようだ %>
+    <%# （シンボルなので値そのものではない） %>
     <%= form.label :jan %>
     <%= form.text_field :jan, id: :cd_jan %>
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_jan">Jan</label> %>
+    <%# <input id="cd_jan" type="text" name="cd[jan]" /> %>
   </div>
 
   <div class="field">
@@ -24,6 +58,9 @@
   <div class="field">
     <%= form.label :price %>
     <%= form.number_field :price, id: :cd_price %>
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_price">Price</label> %>
+    <%# <input id="cd_price" type="number" name="cd[price]" />  %>
   </div>
 
   <div class="field">
@@ -34,14 +71,60 @@
   <div class="field">
     <%= form.label :released %>
     <%= form.date_select :released, id: :cd_released %>
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_released">Released</label> %>
+    <%# <select id="cd_released_1i" name="cd[released(1i)]"> %>
+    <%# <option value="2013">2013</option> %>
+    <%# <option value="2014">2014</option> %>
+    <%# ︙ %>
+    <%# <option value="2017">2017</option> %>
+    <%# <option value="2018" selected="selected">2018</option> %>
+    <%# <option value="2019">2019</option> %>
+    <%# ︙ %>
+    <%# <option value="2023">2023</option> %>
+    <%# </select> %>
+    <%# <select id="cd_released_2i" name="cd[released(2i)]"> %>
+    <%# <option value="1">January</option> %>
+    <%# <option value="2">February</option> %>
+    <%# <option value="3" selected="selected">March</option> %>
+    <%# <option value="4">April</option> %>
+    <%# ︙ %>
+    <%# <option value="12">December</option> %>
+    <%# </select> %>
+    <%# <select id="cd_released_3i" name="cd[released(3i)]"> %>
+    <%# <option value="1">1</option> %>
+    <%# <option value="2">2</option> %>
+    <%# ︙ %>
+    <%# <option value="27">27</option> %>
+    <%# <option value="28" selected="selected">28</option> %>
+    <%# <option value="29">29</option> %>
+    <%# <option value="30">30</option> %>
+    <%# <option value="31">31</option> %>
+    <%# </select> %>
   </div>
 
   <div class="field">
     <%= form.label :is_major %>
     <%= form.check_box :is_major, id: :cd_is_major %>
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_is_major">Is major</label> %>
+    <%# <input name="cd[is_major]" type="hidden" value="0" /><input id="cd_is_major" type="checkbox" value="1" name="cd[is_major]" /> %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
+    <%# ↓出力されるHTML %>
+    <%# <input type="submit" name="commit" value="Create Cd" data-disable-with="Create Cd" /> %>
   </div>
+
+  <%# 最終的には以下のようなハッシュデータがサーバーに送られる %>
+  <%# cd: { %>
+  <%#   "id":51848956, %>
+  <%#   "jan":"4988002756452", %>
+  <%#   "title":"充分未来",%>
+  <%#   "price":2000,
+  <%#   "artist":"集団行動",%>
+  <%#   "released":"2018-02-07",%>
+  <%#   "is_major":true %>
+  <%# } %>
 <% end %>

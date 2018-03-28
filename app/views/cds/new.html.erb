@@ -1,5 +1,11 @@
 <h1>New Cd</h1>
 
+<%# 部分テンプレートに@cdを渡してhtmlを描画する %>
+<%# _form.html.erbが部分テンプレートとして呼び出される %>
 <%= render 'form', cd: @cd %>
 
+<%# cds_pathはビューヘルパーで %>
+<%# /cdsというパスを返す %>
+<%# ↓出力されるHTML %>
+<%# <a href="/cds">Back</a> %>
 <%= link_to 'Back', cds_path %>

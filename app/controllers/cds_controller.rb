@@ -1,4 +1,6 @@
 class CdsController < ApplicationController
+  # before_action: アクションメソッドの前に実行するメソッドを指定する
+  # このようなメソッドをフィルターという
   before_action :set_cd, only: [:show, :edit, :update, :destroy]
 
   # GET /cds
@@ -14,6 +16,7 @@ class CdsController < ApplicationController
 
   # GET /cds/new
   def new
+    # 新規作成の場合は空のオブジェクトを渡す
     @cd = Cd.new
   end
 
@@ -23,15 +26,42 @@ class CdsController < ApplicationController
 
   # POST /cds
   # POST /cds.json
+  # _form.html.erbのフォームから
+  # /cdsにPOSTで入力データが渡されて発火する
   def create
+    # 入力されたデータからオブジェクトを作成する
+    # cd_paramsはメソッドではなくその返り値
+    # (cd_params()の括弧を省略した形)
+    # インスタンス変数に代入しているのはエラー時の表示処理のため
     @cd = Cd.new(cd_params)
 
+    # respond_toメソッドは指定されたフォーマットに応じて
+    # 異なるテンプレートを呼び出す仕組み
     respond_to do |format|
+      # 作成したオブジェクトを保存する
+      # 成功したら
       if @cd.save
+        # 指定されたフォーマットがHTMLなら
+        # /{id値}にリダイレクトする
+        # (@cdはオブジェクトのキー値と解釈される)
+        # 現在のURLが/cdsであるから
+        # /cds/{id値}にリダイレクトする
+        # またオプションとしてデータを渡すことで
+        # ビューテンプレートからローカル変数っぽく利用できる
         format.html { redirect_to @cd, notice: 'Cd was successfully created.' }
+        # 指定されたフォーマットがJSONなら
+        # show.json.builderで新規作成されたデータをJSON形式で出力する
+        # status:はステータスコード
+        # location:はリソース位置のURLを表す
         format.json { render :show, status: :created, location: @cd }
+      # 失敗したら
       else
+        # 指定されたフォーマットがHTMLなら
+        # new.html.erbを再描画する
         format.html { render :new }
+        # 指定されたフォーマットがJSONなら
+        # エラー情報をJSON形式で書き出す
+        # unprocessable_entityはデータを処理できなかったことを示す
         format.json { render json: @cd.errors, status: :unprocessable_entity }
       end
     end
@@ -63,12 +93,30 @@ class CdsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    # フィルターとしてアクションの前に呼び出されるメソッド
     def set_cd
+      # params: URL経由で渡されたパラメータを取得するメソッド
+      # ここではオブジェクトのキー値を取得している
+      # 取得したキー値をもとにfindメソッドで特定のオブジェクトを取得する
       @cd = Cd.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+    # フォームからの入力値を取得する
     def cd_params
+      # 定型句として覚えろ
       params.require(:cd).permit(:jan, :title, :price, :artist, :released, :is_major)
+      # 具体的な戻り値は以下のようなハッシュになる
+      # { 
+      #   "id"=>"51848956", 
+      #   "jan"=>"4988002756452", 
+      #   "title"=>"充分未来",
+      #   "price"=>2000,
+      #   "artist"=>"集団行動",
+      #   "released(1i)"=>"2018",
+      #   "released(2i)"=>"2",
+      #   "released(3i)"=>"7",
+      #   "is_major"=>"0",
+      # }       
     end
 end
