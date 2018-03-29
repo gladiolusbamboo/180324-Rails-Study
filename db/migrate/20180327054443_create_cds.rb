@@ -4,7 +4,7 @@ class CreateCds < ActiveRecord::Migration[5.1]
       t.string :jan
       t.string :title
       t.integer :price
-      t.string :artist
+      t.string :label
       t.date :released
       t.boolean :is_major
 

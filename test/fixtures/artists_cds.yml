@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+modernjs:
+  cd_id: 1
+  artist_id: 1
+
+jsp:
+  cd_id: 2
+  artist_id: 1
+
+jsp_2:
+  cd_id: 2
+  artist_id: 2
+
+java:
+  cd_id: 3
+  artist_id: 2
+
+vcpp:
+  cd_id: 4
+  artist_id: 2
+
+android:
+  cd_id: 5
+  artist_id: 1
+
+php:
+  cd_id: 6
+  artist_id: 3
+
+swift:
+  cd_id: 7
+  artist_id: 3
+
+docker:
+  cd_id: 8
+  artist_id: 1
+
+angular:
+  cd_id: 9
+  artist_id: 1
+
+aspnet:
+  cd_id: 10
+  artist_id: 3

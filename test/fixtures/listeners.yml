@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+yyamada:
+  id: 1
+  listenername: yyamada
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: yyamada@wings.msn.to
+  is_male: true
+  roles: admin,manager
+  reviews_count: 2
+
+isatou:
+  id: 2
+  listenername: isatou
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: isatou@wings.msn.to
+  is_male: false
+  roles: admin
+  reviews_count: 2
+
+hsuzuki:
+  id: 3
+  listenername: hsuzuki
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: hsuzuki@wings.msn.to
+  is_male: true
+  roles: manager
+  reviews_count: 2
+
+tyamamoto:
+  id: 4
+  listenername: tyamamoto
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: tyamamoto@wings.msn.to
+  is_male: false
+  roles: member
+  reviews_count: 1
+
+shayashi:
+  id: 5
+  listenername: shayashi
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: shayashi@wings.msn.to
+  is_male: true
+  roles: member
+  reviews_count: 2
+
+nkakeya:
+  id: 6
+  listenername: nkakeya
+  password_digest: $2a$10$uTwYyniemA7y7.z80yw17uqmRzN/LggEoSzUe.tXGdCUWPvYp9M2m
+  email: nami-piano@nifty.com
+  is_male: true
+  roles: manager,member
+  reviews_count: 0

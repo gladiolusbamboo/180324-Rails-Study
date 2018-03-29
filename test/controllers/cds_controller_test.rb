@@ -17,7 +17,7 @@ class CdsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create cd" do
     assert_difference('Cd.count') do
-      post cds_url, params: { cd: { artist: @cd.artist, is_major: @cd.is_major, jan: @cd.jan, price: @cd.price, released: @cd.released, title: @cd.title } }
+      post cds_url, params: { cd: { artist: @cd.label, is_major: @cd.is_major, jan: @cd.jan, price: @cd.price, released: @cd.released, title: @cd.title } }
     end
 
     assert_redirected_to cd_url(Cd.last)
@@ -34,7 +34,7 @@ class CdsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update cd" do
-    patch cd_url(@cd), params: { cd: { artist: @cd.artist, is_major: @cd.is_major, jan: @cd.jan, price: @cd.price, released: @cd.released, title: @cd.title } }
+    patch cd_url(@cd), params: { cd: { artist: @cd.label, is_major: @cd.is_major, jan: @cd.jan, price: @cd.price, released: @cd.released, title: @cd.title } }
     assert_redirected_to cd_url(@cd)
   end
 

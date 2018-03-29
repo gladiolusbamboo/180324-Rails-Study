@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+yamada:
+  id: 1
+  listener_id: 1
+  name: KICK THE CAN CREW
+  birth: 1997-01-01
+  url: kick_url
+
+satou:
+  id: 2
+  listener_id: 2
+  name: KREVA
+  birth: 1977-05-05
+  url: kreva_url
+
+suzuki:
+  id: 3
+  listener_id: 3
+  name: UL
+  birth: 1980-03-03
+  url: ul_url

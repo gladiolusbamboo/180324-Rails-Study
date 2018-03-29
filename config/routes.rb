@@ -1,5 +1,9 @@
 # ルーティング設定を指定する
 Rails.application.routes.draw do
+  resources :fan_comments
+  resources :reviews
+  resources :artists
+  resources :listeners
   # resoucesメソッドで以下のようなルーティングが設定される
   # :formatが省略された場合はhtmlとみなされる
   # GET    /cds(.:format)          cds#index

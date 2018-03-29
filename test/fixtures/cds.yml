@@ -1,58 +1,91 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-# フィクスチャによるテストデータの準備
-# （テストデータをデータベースに流し込むための仕組み）
-# rails db:fixtures:load FIXTURES=cds
-# みたいなコマンドでテーブルにテストデータが展開される
-
-# 指定したフィールド以外に
-# id（主キー）,created_at（作成日時）,
-# updated_at（更新日時）フィールドが自動生成される
-
-one:
-  jan: 4526180405252
-  title: 星眠る島
-  price: 1600
-  artist: 宇宙団
-  released: 2017-01-11
+modernjs:
+  id: 1
+  jan: 978-4-7741-8411-1
+  title: 改訂新版JavaScript本格入門
+  price: 2980
+  label: 技術評論社
+  released: 2016-09-30
   is_major: false
 
-two:
-  jan: 4526180352792
-  title: インスタント！
-  price: 1800
-  artist: ナマニエルボーイズ
-  released: 2015-08-12 
+jsp:
+  id: 2
+  jan: 978-4-7980-4803-1
+  title: はじめてのJSP&サーブレット 第2版
+  price: 2800
+  label: 秀和システム
+  released: 2016-09-27
   is_major: false
 
-three:
-  jan: 4526180414421
-  title: 僕は停滞気味
-  price: 1500
-  artist: ザ・ロスト・クラブ
-  released: 2017-04-19
-  is_major: false
-
-four:
-  jan: 4526180436577
-  title: BOY'S LIFE
-  price: 2000
-  artist: Kent Funayama
-  released: 2018-01-24
-  is_major: false
-
-five:
-  jan: 4518575736157
-  title: HELLO!!/FEVER
-  price: 1000
-  artist: あヴぁんだんど
-  released: 2017-05-31
-  is_major: false
-
-six:
-  jan: 4988002756452
-  title: 充分未来
-  price: 2000
-  artist: 集団行動
-  released: 2018-02-07
+java:
+  id: 3
+  jan: 978-4-7741-8030-4
+  title: Javaポケットリファレンス
+  price: 2680
+  label: 技術評論社
+  released: 2016-03-18
   is_major: true
+
+vcpp:
+  id: 4
+  jan: 978-4-8222-9876-0
+  title: アプリを作ろう！ Visual C++入門
+  price: 2000
+  label: 日経BP社
+  released: 2016-06-22
+  is_major: true
+
+android:
+  id: 5
+  jan: 978-4-8222-9644-5
+  title: アプリを作ろう！ Android入門
+  price: 2000
+  label: 日経BP社
+  released: 2015-08-21
+  is_major: false
+
+php:
+  id: 6
+  jan: 978-4-7981-3547-2
+  title: 独習PHP 第3版 
+  price: 3200
+  label: 翔泳社
+  released: 2016-04-08
+  is_major: true
+
+swift:
+  id: 7
+  jan: 978-4-7741-7984-1
+  title: Swiftポケットリファレンス 
+  price: 2780
+  label: 技術評論社
+  released: 2016-03-04
+  is_major: false
+
+docker:
+  id: 8
+  jan: 978-4-7981-4102-2
+  title: プログラマのためのDocker教科書
+  price: 3000
+  label: 翔泳社
+  released: 2015-11-19
+  is_major: false
+
+angular:
+  id: 9
+  jan: 978-4-7741-7568-3
+  title: AngularJSアプリケーションプログラミング
+  price: 3700
+  label: 技術評論社
+  released: 2015-08-19
+  is_major: false
+
+aspnet:
+  id: 10
+  jan: 978-4-7981-4402-3
+  title: 独習ASP.NET 第5版
+  price: 3800
+  label: 翔泳社
+  released: 2016-01-21
+  is_major: false

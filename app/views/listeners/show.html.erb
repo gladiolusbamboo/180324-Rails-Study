@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Listenername:</strong>
+  <%= @listener.listenername %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @listener.password_digest %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @listener.email %>
+</p>
+
+<p>
+  <strong>Is male:</strong>
+  <%= @listener.is_male %>
+</p>
+
+<p>
+  <strong>Roles:</strong>
+  <%= @listener.roles %>
+</p>
+
+<p>
+  <strong>Reviews count:</strong>
+  <%= @listener.reviews_count %>
+</p>
+
+<%= link_to 'Edit', edit_listener_path(@listener) %> |
+<%= link_to 'Back', listeners_path %>

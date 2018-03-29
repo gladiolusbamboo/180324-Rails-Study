@@ -1,0 +1,47 @@
+<%= form_with(model: listener, local: true) do |form| %>
+  <% if listener.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(listener.errors.count, "error") %> prohibited this listener from being saved:</h2>
+
+      <ul>
+      <% listener.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :listenername %>
+    <%= form.text_field :listenername, id: :listener_listenername %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_digest %>
+    <%= form.text_field :password_digest, id: :listener_password_digest %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :listener_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_male %>
+    <%= form.check_box :is_male, id: :listener_is_male %>
+  </div>
+
+  <div class="field">
+    <%= form.label :roles %>
+    <%= form.text_field :roles, id: :listener_roles %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reviews_count %>
+    <%= form.number_field :reviews_count, id: :listener_reviews_count %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -42,10 +42,8 @@ class CdsController < ApplicationController
       # 成功したら
       if @cd.save
         # 指定されたフォーマットがHTMLなら
-        # /{id値}にリダイレクトする
+        # cds/{id値}にリダイレクトする
         # (@cdはオブジェクトのキー値と解釈される)
-        # 現在のURLが/cdsであるから
-        # /cds/{id値}にリダイレクトする
         # またオプションとしてデータを渡すことで
         # ビューテンプレートからローカル変数っぽく利用できる
         format.html { redirect_to @cd, notice: 'Cd was successfully created.' }
@@ -70,12 +68,34 @@ class CdsController < ApplicationController
   # PATCH/PUT /cds/1
   # PATCH/PUT /cds/1.json
   def update
+    # フィルターに設定されている
+    # set_cdメソッドにより@cdにはオブジェクトが取得されている
+
+    # respond_toメソッドは指定されたフォーマットに応じて
+    # 異なるテンプレートを呼び出す仕組み
     respond_to do |format|
+      # 作成したオブジェクトを更新する
+      # 成功したら
       if @cd.update(cd_params)
+        # 指定されたフォーマットがHTMLなら
+        # cds/{id値}にリダイレクトする
+        # (@cdはオブジェクトのキー値と解釈される)
+        # またオプションとしてデータを渡すことで
+        # ビューテンプレートからローカル変数っぽく利用できる
         format.html { redirect_to @cd, notice: 'Cd was successfully updated.' }
+        # 指定されたフォーマットがJSONなら
+        # show.json.builderで新規作成されたデータをJSON形式で出力する
+        # status:はステータスコード
+        # location:はリソース位置のURLを表す
         format.json { render :show, status: :ok, location: @cd }
+      # 失敗したら
       else
+        # 指定されたフォーマットがHTMLなら
+        # edit.html.erbを再描画する
         format.html { render :edit }
+        # 指定されたフォーマットがJSONなら
+        # エラー情報をJSON形式で書き出す
+        # unprocessable_entityはデータを処理できなかったことを示す
         format.json { render json: @cd.errors, status: :unprocessable_entity }
       end
     end
@@ -84,9 +104,20 @@ class CdsController < ApplicationController
   # DELETE /cds/1
   # DELETE /cds/1.json
   def destroy
+    # フィルターに設定されている
+    # set_cdメソッドにより@cdにはオブジェクトが取得されている
+
+    # オブジェクトを削除する
     @cd.destroy
+    # respond_toメソッドは指定されたフォーマットに応じて
+    # 異なるテンプレートを呼び出す仕組み
     respond_to do |format|
+      # 指定されたフォーマットがHTMLなら
+      # ビューヘルパーを経由して/cdsへリダイレクトする
       format.html { redirect_to cds_url, notice: 'Cd was successfully destroyed.' }
+      # 指定されたフォーマットがJSONなら
+      # headメソッドを使用してステータスコードを返す
+      # :no_contentはステータスコード204 No Contentを表す
       format.json { head :no_content }
     end
   end
