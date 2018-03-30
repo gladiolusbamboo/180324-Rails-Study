@@ -1,0 +1,22 @@
+<%# options_from_collection_for_select()を利用した選択ボックス %>
+
+  <%# 第一引数：オブジェクト配列
+      第二引数：value属性に割り当てられる項目
+      第三引数：テキストに割り当てられる項目
+      第四引数：デフォルトの選択値（文字列で指定する）
+       %>
+<%# 
+↓出力されるHTML
+<select name="label" id="label">
+<option value="ビクターエンタテインメント">ビクターエンタテインメント</option>
+<option value="エピックレコードジャパン">エピックレコードジャパン</option>
+<option selected="selected" value="サザナミレーベル">サザナミレーベル</option>
+<option value="モジャーレコーズ">モジャーレコーズ</option>
+</select> 
+%>
+
+<%= select_tag 'label',
+    options_from_collection_for_select(
+      @cds, :label, :label, 'サザナミレーベル'
+    )
+%>

@@ -1,0 +1,39 @@
+<%# グループ化された選択ボックスを作成する %>
+<%# 適切なアソシエーションが行われている必要がある %>
+<%= form_for(@review) do |f| %>
+  レビュー対象CD：
+  <%# 
+  第一引数：オブジェクト名（ここでは省略）
+  第二引数：編集対象のプロパティ名(@review.cd_id)（アソシエーションでつながっている）
+  第三引数：<optgroup>要素のもととなるオブジェクト配列(@artistsでグループ化する)
+  第四引数：配下の<option>要素を取得するアソシエーション(@artists.cdsをオプションに設定する)
+  第五引数：<optgroup>要素のlabel属性となる項目(<optgroup>のlabel属性にartist.nameを設定する)
+  第六引数：<option>要素のvalue属性に割り当てられる項目(<option>のvalueにcd.idを設定する)
+  第七引数：<option>要素のテキストに割り当てられる項目（<option>のテキストにcd.titleを設定する）   
+  %>
+  <%= f.grouped_collection_select 
+        :cd_id, 
+        @artists, 
+        :cds, 
+        :name, 
+        :id, 
+        :title %>
+  ↓出力されるHTML
+  <%# 
+  <form class="new_review" id="new_review" action="/reviews" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="eHtNg5s1n9r6jHkTSZePnNrATSwzUMAighS/MEovf0tmvppmvD3mY9WLxOXqryrlMy6fGnv5Lrrlt1SFjs/Suw==" />
+  レビュー対象CD：
+  <select name="review[cd_id]" id="review_cd_id">
+  <optgroup label="KICK THE CAN CREW">
+  <option value="1">充分未来</option>
+  <option value="2">星眠る島</option>
+  <option value="5">エロス</option>
+  <option value="8">すてきな15才</option>
+  <option value="9">KICK!</option></optgroup><optgroup label="KREVA"><option value="2">星眠る島</option>
+  <option value="3">カンバセイション</option>
+  <option value="4">僕は停滞気味</option></optgroup><optgroup label="UL"><option value="6">MICHITONOSOGU</option>
+  <option value="7">つしまげる</option>
+  <option value="10">AOKAJI</option></optgroup></select>
+  </form> 
+  %>
+
+<% end %>

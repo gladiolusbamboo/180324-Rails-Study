@@ -1,0 +1,37 @@
+<%# データベースの情報をもとにチェックボックス、ラジオボタンを生成する %>
+<%= form_for(@cd) do |f| %>
+  <%# 第一引数：オブジェクト名（ここでは省略）
+      第二引数：プロパティ名(:label)
+      第三引数：オブジェクト配列
+      第四引数：value属性に割り当てられる項目
+      第五引数：テキストに割り当てられる項目 %>
+  <%= f.collection_check_boxes(:label, @cds, :label, :label) %><br />
+  <%= f.collection_radio_buttons(:label, @cds, :label, :label) %><br />
+<% end %>
+<%# ↓出力されるHTML %>
+<%# 
+<form class="new_cd" id="new_cd" action="/cds" accept-charset="UTF-8" method="post">
+  <input name="utf8" type="hidden" value="&#x2713;" />
+  <input type="hidden" name="authenticity_token" value="QQzSU7uc52+rXGLZHrgGZdPIgm5ZA3Q25LjhdtpCypnp2LPbgqi1Eo6tQNUxnrVn10vcbo9zx4zeckpl29GK7A==" />
+
+  <input type="hidden" name="cd[label][]" value="" />
+  <input type="checkbox" value="ビクターエンタテインメント" name="cd[label][]" id="cd_label_ビクターエンタテインメント" />
+  <label for="cd_label_ビクターエンタテインメント">ビクターエンタテインメント</label>
+  <input type="checkbox" value="エピックレコードジャパン" name="cd[label][]" id="cd_label_エピックレコードジャパン" />
+  <label for="cd_label_エピックレコードジャパン">エピックレコードジャパン</label>
+  <input type="checkbox" value="サザナミレーベル" checked="checked" name="cd[label][]" id="cd_label_サザナミレーベル" />
+  <label for="cd_label_サザナミレーベル">サザナミレーベル</label>
+  <input type="checkbox" value="モジャーレコーズ" name="cd[label][]" id="cd_label_モジャーレコーズ" />
+  <label for="cd_label_モジャーレコーズ">モジャーレコーズ</label><br />
+
+  <input type="hidden" name="cd[label]" value="" />
+  <input type="radio" value="ビクターエンタテインメント" name="cd[label]" id="cd_label_ビクターエンタテインメント" />
+  <label for="cd_label_ビクターエンタテインメント">ビクターエンタテインメント</label>
+  <input type="radio" value="エピックレコードジャパン" name="cd[label]" id="cd_label_エピックレコードジャパン" />
+  <label for="cd_label_エピックレコードジャパン">エピックレコードジャパン</label>
+  <input type="radio" value="サザナミレーベル" checked="checked" name="cd[label]" id="cd_label_サザナミレーベル" />
+  <label for="cd_label_サザナミレーベル">サザナミレーベル</label>
+  <input type="radio" value="モジャーレコーズ" name="cd[label]" id="cd_label_モジャーレコーズ" />
+  <label for="cd_label_モジャーレコーズ">モジャーレコーズ</label><br />
+</form> 
+%>

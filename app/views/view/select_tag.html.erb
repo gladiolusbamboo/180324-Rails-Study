@@ -1,0 +1,16 @@
+<%# 単純な選択ボックス %>
+<%# raw()はHTMLエスケープしないの意味 %>
+
+<%# ↓出力されるHTML %>
+<%# 
+<select name="label" id="label">
+<option value="1">ビクターエンタテインメント</option>
+<option value="2">エピックレコードジャパン</option>
+<option value="3">サザナミレーベル</option>
+</select> 
+%>
+
+<%= select_tag 'label', 
+    raw('<option value="1">ビクターエンタテインメント</option>
+    <option value="2">エピックレコードジャパン</option>
+    <option value="3">サザナミレーベル</option>') %>

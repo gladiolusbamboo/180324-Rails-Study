@@ -1,0 +1,28 @@
+<%# form_tagメソッドは特定のモデルに関係しない %>
+<%# 汎用的なフォームを生成する %>
+<%# form_tag内ではFormTagヘルパー（末尾に_tag）および %>
+<%# Formヘルパー（接頭辞、接尾辞なし）が利用できる %>
+
+<%# と書いてあるんだけど、form_tagとform_forは %>
+<%# form_withに統合されたっぽい %>
+<%# 微妙にURLの指定方法が変わってるので注意 %>
+
+<%# コントローラーとアクションを指定することでURLに代替している %>
+<%# ↓出力されるHTML %>
+<%# <form id="fm" class="search" action="/keyword/search" accept-charset="UTF-8" method="post"> %>
+<%#   <input name="utf8" type="hidden" value="&#x2713;" /> %>
+<%#   <input type="hidden" name="authenticity_token" value="nLE7Q2YX2wR00VTbeEh7pAXGmaduBscbJtpQas3APoXbfD6P2gA3GXqXu++JpYILKQtkHWXtuJd9JYQrdyAVvA==" /> %>
+<%# ︙ %>
+<%# </form> %>
+<%= form_with(
+  url: {
+    controller: :keyword, 
+    action: :search
+  },
+  id: :fm,
+  class: :search) do %>
+  <label for="keywd">検索キーワード</label>
+  <%# テキストボックスを出力するビューヘルパー %>
+  <%= text_field_tag :keywd, '', size: 30 %>
+  <%= submit_tag '検索' %>
+<% end %>

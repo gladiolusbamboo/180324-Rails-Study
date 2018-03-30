@@ -1,0 +1,39 @@
+<%# option_groups_from_collection_for_select()を利用した選択ボックス %>
+
+  <%#  
+  第一引数：<optgroup>要素のもととなるオブジェクト配列(@artistsでグループ化する)
+  第二引数：配下の<option>要素を取得するアソシエーション(@artists.cdsをオプションに設定する)
+  第三引数：<optgroup>要素のlabel属性となる項目(<optgroup>のlabel属性にartist.nameを設定する)
+  第四引数：<option>要素のvalue属性に割り当てられる項目(<option>のvalueにcd.idを設定する)
+  第五引数：<option>要素のテキストに割り当てられる項目（<option>のテキストにcd.titleを設定する）   
+  第六引数（オプション）：デフォルトの選択値   
+  %>
+
+<%# 
+↓出力されるHTML
+<select name="label" id="label">
+<optgroup label="KICK THE CAN CREW">
+<option selected="selected" value="1">充分未来</option>
+<option value="2">星眠る島</option>
+<option value="5">エロス</option>
+<option value="8">すてきな15才</option>
+<option value="9">KICK!</option>
+</optgroup>
+<optgroup label="KREVA">
+<option value="2">星眠る島</option>
+<option value="3">カンバセイション</option>
+<option value="4">僕は停滞気味</option>
+</optgroup>
+<optgroup label="UL">
+<option value="6">MICHITONOSOGU</option>
+<option value="7">つしまげる</option>
+<option value="10">AOKAJI</option>
+</optgroup>
+</select>
+%>
+
+<%= select_tag 'label',
+    option_groups_from_collection_for_select(
+      @artists, :cds, :name, :id, :title, '1'
+    )
+%>

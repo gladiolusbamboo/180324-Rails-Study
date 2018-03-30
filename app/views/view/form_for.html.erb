@@ -1,0 +1,49 @@
+<%# form_forメソッドで %>
+<%# 特定のオブジェクトに対するフォームを作成することができる %>
+<%# モデルの内容によって適切なHTMLを出力してくれる %>
+<%# (resourcesメソッドで適切なルートが定義されている必要がある)) %>
+
+<%# コントローラーで @cd = Cd.new とした場合 %>
+<%# ↓出力されるHTML %>
+<%# <form class="new_cd" id="new_cd" action="/cds" accept-charset="UTF-8" method="post"> %>
+<%# <input name="utf8" type="hidden" value="&#x2713;" /> %>
+<%# <input type="hidden" name="authenticity_token" value="ICBSZIk1wOmtN2uy9+B8NYgGvi9n9j389ymKGjkub1qI9DPssAGSlIjGSb7Yxs83jIXgL7GGjkbN4yEJOL0vLw==" /> %>
+<%# ︙ %>
+<%# </form> %>
+
+<%# コントローラーで @cd = Cd.find(1) とした場合 %>
+<%# ↓出力されるHTML %>
+<%# <form class="edit_cd" id="edit_cd_1" action="/cds/1" accept-charset="UTF-8" method="post"> %>
+<%# <input name="utf8" type="hidden" value="&#x2713;" /> %>
+<%# <input type="hidden" name="_method" value="patch" /> %>
+<%# <input type="hidden" name="authenticity_token" value="YUdwAYLFE3NP4WwhUreqDPBhCPQSFITYaeRmGU0h94oal0I6jGqSmtyrIG/LH80e9kM5kegsaciaYWbNsiQ71g==" /> %>
+<%# ︙ %>
+<%# </form> %>
+
+<%= form_for(@cd) do |f| %>
+  <div class="field">
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_jan">Jan</label><br /> %>
+    <%= f.label :jan %><br />
+    <%# コントローラーで @cd = Cd.new とした場合 %>
+    <%# ↓出力されるHTML %>
+    <%# <input size="25" type="text" name="cd[jan]" id="cd_jan" /> %>
+    <%# コントローラーで @cd = Cd.find(1) とした場合 %>
+    <%# ↓出力されるHTML %>
+    <%# <input size="25" type="text" value="978-4-7741-8411-1" name="cd[jan]" id="cd_jan" /> %>
+    <%= f.text_field :jan, size: 25 %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, size: 25 %><br />
+  </div>
+  <div class="actions">
+    <%# コントローラーで @cd = Cd.new とした場合 %>
+    <%# ↓出力されるHTML %>
+    <%# <input type="submit" name="commit" value="Create Cd" data-disable-with="Create Cd" /> %>
+    <%# コントローラーで @cd = Cd.find(1) とした場合 %>
+    <%# ↓出力されるHTML %>
+    <%# <input type="submit" name="commit" value="Update Cd" data-disable-with="Update Cd" /> %>
+    <%= f.submit %>
+  </div>
+<% end %>

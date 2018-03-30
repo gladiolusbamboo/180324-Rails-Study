@@ -1,0 +1,37 @@
+<%= form_for(@cd) do |f| %>
+  テキストボックス：
+  <%= f.text_field :jan, size: 20, maxlength: 25, readonly: true %><br />
+  <%# <input size="20" maxlength="25" readonly="readonly" type="text" name="cd[jan]" id="cd_jan" /> %>
+
+  パスワードボックス：
+  <%= f.password_field :jan, size: 10, maxlength: 15, disabled: true %><br />
+  <%# <input size="10" maxlength="15" disabled="disabled" type="password" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  テキストエリア：<br />
+  <%= f.text_area :jan, cols: 40, rows: 10 %><br />
+  <%# <textarea cols="40" rows="10" name="cd[jan]" id="cd_jan"> %>
+
+  ラジオボタン：
+  <label><%= f.radio_button :label, 'ビクターエンタテインメント', class: :rd %>ビクターエンタテインメント</label>
+  <label><%= f.radio_button :label, 'エピックレコードジャパン', class: :rd %>エピックレコードジャパン</label>
+  <label><%= f.radio_button :label, 'サザナミレーベル', class: :rd %>サザナミレーベル</label><br />
+  <%# <label><input class="rd" type="radio" value="ビクターエンタテインメント" name="cd[label]" id="cd_label_ビクターエンタテインメント" />ビクターエンタテインメント</label> %>
+  <%# <label><input class="rd" type="radio" value="エピックレコードジャパン" name="cd[label]" id="cd_label_エピックレコードジャパン" />エピックレコードジャパン</label> %>
+  <%# <label><input class="rd" type="radio" value="サザナミレーベル" name="cd[label]" id="cd_label_サザナミレーベル" />サザナミレーベル</label><br /> %>
+
+  チェックボックス：
+  <lable><%= f.check_box :is_major, { class: 'chk' }, 'yes', 'no' %>メジャーレーベル？</label><br />
+  <%# チェックボックスがチェックされなかった場合でも %>
+  <%# 情報を送信するために隠しフィールドを出力する %>
+  <%# <lable><input name="cd[is_major]" type="hidden" value="no" /> %>
+  <%# <input class="chk" type="checkbox" value="yes" name="cd[is_major]" id="cd_is_major" />メジャーレーベル？</label><br /> %>
+
+  ファイル入力ボックス：
+  <%= f.file_field :jan, size: 10, maxlength: 15 %><br />
+  <%# <input size="10" maxlength="15" type="file" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  隠しフィールド：
+  <%= f.hidden_field :jan %><br />
+  <%# <input type="hidden" name="cd[jan]" id="cd_jan" /><br /> %>
+
+<% end %>

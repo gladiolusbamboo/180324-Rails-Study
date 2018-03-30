@@ -1,0 +1,43 @@
+<%# アソシエーションを利用することで対象と異なるモデルを編集することもできる %>
+<%= form_for(@listener, url: {action: :create}) do |f| %>
+  <div class="field">
+    <%= f.label :username, 'リスナー名：' %><br />
+    <%= f.text_field :listenername %>
+  </div>
+  <div class="field">
+    <%= f.label :email, 'メールアドレス：' %><br />
+    <%= f.text_field :email %>
+  </div>
+  <%# フォーム要素をグループ化する %>
+  <%# HTML的には<fieldset>タグ、<legend>タグを出力する %>
+  <%= field_set_tag '著者情報' do %>
+    <%# fields_forメソッド配下の部分だけ別のモデルを対象とした
+    サブフォームに切り替えることができる %>
+    <%= fields_for @listener.artist do |af| %>
+      <div class="field">
+        <%= af.label :name, 'アーティスト名：' %>
+        <%= af.text_field :name %>
+      </div>
+      <div class="field">
+        <%= af.label :birth, '誕生日：' %>
+        <%= af.text_field :birth %>
+      </div>
+    <% end %>
+  <% end %>
+  <%# 
+  ↓出力されるHTML
+  artistというモデル名がちゃんと反映されている
+  <fieldset>
+    <legend>著者情報</legend>   
+    <div class="field">
+      <label for="artist_name">アーティスト名：</label>
+      <input type="text" value="KICK THE CAN CREW" name="artist[name]" id="artist_name" />
+    </div>
+    <div class="field">
+      <label for="artist_birth">誕生日：</label>
+      <input type="text" value="1997-01-01" name="artist[birth]" id="artist_birth" />
+    </div>
+  </fieldset>
+  %>
+  <%= f.submit '登録' %>
+<% end %>

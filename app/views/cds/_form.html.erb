@@ -43,7 +43,7 @@
     <%# 出力しようとしているフォームを意味する %>
     <%# :janは引数として渡したオブジェクトのjanプロパティを表しているようだ %>
     <%# （シンボルなので値そのものではない） %>
-    <%= form.label :jan %>
+    <%= form.label :jan, 'JANコード' %>
     <%= form.text_field :jan, id: :cd_jan %>
     <%# ↓出力されるHTML %>
     <%# <label for="cd_jan">Jan</label> %>
@@ -61,11 +61,6 @@
     <%# ↓出力されるHTML %>
     <%# <label for="cd_price">Price</label> %>
     <%# <input id="cd_price" type="number" name="cd[price]" />  %>
-  </div>
-
-  <div class="field">
-    <%= form.label :artist %>
-    <%= form.text_field :artist, id: :cd_artist %>
   </div>
 
   <div class="field">
@@ -112,7 +107,12 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%# disable_withはサブミット時にボタンを無効化したときに表示するテキスト %>
+    <%= form.submit '保存', 
+    data: {confirm: '保存しても良いですか？',
+    disable_with: '処理中...' } %>
+
+    <%# <%= form.submit %>
     <%# ↓出力されるHTML %>
     <%# <input type="submit" name="commit" value="Create Cd" data-disable-with="Create Cd" /> %>
   </div>

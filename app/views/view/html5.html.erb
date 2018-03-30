@@ -1,0 +1,55 @@
+html5
+<%# <form class="new_cd" id="new_cd" action="/cds" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="WAGR6x07FM87j1g+68pbLrnVEe6Wk0m8JXy2AeejA6Tw1fBjJA9Gsh5+ejLE7OgsvVZP7kDj+gYfth0S5jBD0Q==" /> %>
+<%= form_for(@cd) do |f| %>
+  色選択ボックス：
+  <%= f.color_field :jan %><br />
+  <%# <input value="#000000" type="color" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  日付入力ボックス：
+  <%= f.date_field :released %><br />
+  <%# <input type="date" name="cd[released]" id="cd_released" /><br /> %>
+
+  時刻入力ボックス：
+  <%= f.time_field :released %><br />
+  <%# <input type="time" name="cd[released]" id="cd_released" /><br /> %>
+
+  日付時刻入力ボックス：
+  <%= f.datetime_field :released %><br />
+  <%# <input type="datetime-local" name="cd[released]" id="cd_released" /><br /> %>
+  
+  日付時刻入力ボックス（ローカル）：
+  <%= f.datetime_local_field :released %><br />
+  <%# <input type="datetime-local" name="cd[released]" id="cd_released" /><br /> %>
+
+  月入力ボックス：
+  <%= f.month_field :released %><br />
+  <%# <input type="month" name="cd[released]" id="cd_released" /><br /> %>
+
+  週入力ボックス：
+  <%= f.week_field :released %><br />
+  <%# <input type="week" name="cd[released]" id="cd_released" /><br /> %>
+
+  メール入力ボックス：
+  <%= f.email_field :jan, size: 25, maxlength: 30 %><br />
+  <%# <input size="25" maxlength="30" type="email" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  数値入力入力ボックス：
+  <%= f.number_field :price, min: 10, max: 10000, step: 10 %><br />
+  <%# <input min="10" max="10000" step="10" type="number" name="cd[price]" id="cd_price" /><br /> %>
+
+  スライダー：
+  <%= f.range_field :price, min: 0, max: 10000 %><br />
+  <%# <input min="0" max="10000" type="range" name="cd[price]" id="cd_price" /><br /> %>
+
+  検索ボックス：
+  <%= f.search_field :jan, size: 10, maxlength: 15 %><br />
+  <%# <input size="10" maxlength="15" type="search" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  電話番号入力ボックス：
+  <%= f.telephone_field :jan, size: 15, maxlength: 20 %><br />
+  <%# <input size="15" maxlength="20" type="tel" name="cd[jan]" id="cd_jan" /><br /> %>
+
+  URL入力ボックス：
+  <%= f.url_field :jan, size: 10, maxlength: 15 %><br />
+  <%# <input size="10" maxlength="15" type="url" name="cd[jan]" id="cd_jan" /><br /> %>
+<% end %>

@@ -67,7 +67,11 @@ class CdsController < ApplicationController
 
   # PATCH/PUT /cds/1
   # PATCH/PUT /cds/1.json
+  # _form.html.erbのフォームから
+  # /cds/{キー値}にPATCHで入力データが渡されて発火する
   def update
+    sleep 3
+
     # フィルターに設定されている
     # set_cdメソッドにより@cdにはオブジェクトが取得されている
 

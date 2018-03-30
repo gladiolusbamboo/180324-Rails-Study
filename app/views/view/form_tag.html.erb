@@ -1,0 +1,26 @@
+<%# form_tagとform_withではURLの指定方法がちょっと違うので注意 %> 
+
+<%# ↓出力されるHTML %>
+<%# <form action="/view/create" accept-charset="UTF-8" data-remote="true" method="post"> %>
+<%# <input name="utf8" type="hidden" value="&#x2713;" /> %>
+<%# <input type="hidden" name="authenticity_token" value="0gVXPOXX5dETCvlYN0RdY2x0ps37UkTsoS/00G80uhboZieryhAj6Vd6KHeOVqIh/uQuMrOD+eShk0MXJe0NZQ==" /> %>
+<%# ︙ %>
+<%# </form> %>
+<%= form_with(url:{action: :create}) do %>
+  <div class="field">
+    <%# ↓出力されるHTML %>
+    <%# <label for="cd_jan">Jan</label><br /> %>
+    <%= label :cd, :jan %><br />
+    <%# ↓出力されるHTML %>
+    <%# <input size="25" type="text" name="cd[jan]" id="cd_jan" /><br /> %>
+    <%= text_field :cd, :jan, size: 25 %><br />
+  </div>
+  <div class="field">
+    <%= label :cd, :title %><br />
+    <%= text_field :cd, :title, size: 25 %><br />
+  </div>
+  <div class="actions">
+    <%= submit_tag '送信' %>  
+  </div>
+<% end %>
+<%# ハッシュ形式でaction先のURLに渡される %>

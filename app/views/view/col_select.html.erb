@@ -1,0 +1,16 @@
+<%# データベースの値を元に選択ボックスの<option>タグを生成する %>
+<%# ↓出力されるHTML %>
+<%# <form class="new_cd" id="new_cd" action="/cds" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="O2RAScoaE7B0A84R5J74lMwg4rWIrqscsvmeOrLSln6TsCHB8y5BzVHy7B3LuEuWyKO8tV7eGKaIMzUps0HWCw==" /> %>
+<%# <select name="cd[label]" id="cd_label"><option value="ビクターエンタテインメント">ビクターエンタテインメント</option> %>
+<%# <option value="エピックレコードジャパン">エピックレコードジャパン</option> %>
+<%# <option selected="selected" value="サザナミレーベル">サザナミレーベル</option> %>
+<%# <option value="モジャーレコーズ">モジャーレコーズ</option></select> %>
+<%# </form> %>
+<%= form_for(@cd) do |f| %>
+  <%# 第一引数：オブジェクト名（ここでは省略）
+      第二引数：プロパティ名(:label)
+      第三引数：オブジェクト配列
+      第四引数：value属性に割り当てられる項目
+      第五引数：テキストに割り当てられる項目 %>
+  <%= f.collection_select :label, @cds, :label, :label %>
+<% end %>

@@ -1,0 +1,44 @@
+select
+<%= form_for(@cd) do |f| %>
+
+<%# 選択ボックスを作成 %>
+<%= f.select :label, 
+  ['ビクターエンタテインメント', 
+   'エピックレコードジャパン', 
+   'サザナミレーベル'],
+  {include_blank: '選択してください'}, 
+  class: 'lab' %><br />
+<%# <select class="lab" name="cd[label]" id="cd_label"><option value="">選択してください</option> %>
+<%# <option value="ビクターエンタテインメント">ビクターエンタテインメント</option> %>
+<%# <option value="エピックレコードジャパン">エピックレコードジャパン</option> %>
+<%# <option value="サザナミレーベル">サザナミレーベル</option></select><br /> %>
+
+<%= f.select :label, 
+  {'ビクターエンタテインメント' => 1, 
+   'エピックレコードジャパン' => 2,
+   'サザナミレーベル' => 3} %><br />
+<%# <select name="cd[label]" id="cd_label"><option value="1">ビクターエンタテインメント</option> %>
+<%# <option value="2">エピックレコードジャパン</option> %>
+<%# <option value="3">サザナミレーベル</option></select><br /> %>
+
+<%= f.select :label,
+  [['ビクターエンタテインメント', 1],
+   ['エピックレコードジャパン', 2],
+   ['サザナミレーベル', 3]] %><br />
+<%# <select name="cd[label]" id="cd_label"><option value="1">ビクターエンタテインメント</option> %>
+<%# <option value="2">エピックレコードジャパン</option> %>
+<%# <option value="3">サザナミレーベル</option></select><br /> %>
+
+<%# リストボックス（複数選択ができるでかいやつ）を作成 %>
+<%= f.select :label,
+   ['ビクターエンタテインメント',
+    'エピックレコードジャパン', 
+    'サザナミレーベル'],
+   {include_blank: '選択してください'},
+   multiple: true %><br />
+<%# <input name="cd[label][]" type="hidden" value="" /><select multiple="multiple" name="cd[label][]" id="cd_label"><option value="">選択してください</option> %>
+<%# <option value="ビクターエンタテインメント">ビクターエンタテインメント</option> %>
+<%# <option value="エピックレコードジャパン">エピックレコードジャパン</option> %>
+<%# <option value="サザナミレーベル">サザナミレーベル</option></select><br /> %>
+
+<% end %>

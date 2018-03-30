@@ -1,0 +1,19 @@
+<%# option_for_select()を利用した選択ボックス %>
+
+<%# ↓出力されるHTML %>
+<%# 
+<select name="label" id="label">
+<option value="1">ビクターエンタテインメント</option>
+<option selected="selected" value="2">エピックレコードジャパン</option>
+<option value="3">サザナミレーベル</option></select>
+%>
+<%# options_for_select()の第二引数はデフォルトの選択値 %>
+
+<%= select_tag 'label', 
+    options_for_select(
+      {'ビクターエンタテインメント' => 1,
+       'エピックレコードジャパン' => 2,
+       'サザナミレーベル' =>3},
+       2
+    )
+%>

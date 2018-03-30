@@ -3,89 +3,89 @@
 modernjs:
   id: 1
   jan: 978-4-7741-8411-1
-  title: 改訂新版JavaScript本格入門
+  title: 充分未来
   price: 2980
-  label: 技術評論社
+  label: ビクターエンタテインメント
   released: 2016-09-30
   is_major: false
 
 jsp:
   id: 2
   jan: 978-4-7980-4803-1
-  title: はじめてのJSP&サーブレット 第2版
+  title: 星眠る島
   price: 2800
-  label: 秀和システム
+  label: エピックレコードジャパン
   released: 2016-09-27
   is_major: false
 
 java:
   id: 3
   jan: 978-4-7741-8030-4
-  title: Javaポケットリファレンス
+  title: カンバセイション
   price: 2680
-  label: 技術評論社
+  label: ビクターエンタテインメント
   released: 2016-03-18
   is_major: true
 
 vcpp:
   id: 4
   jan: 978-4-8222-9876-0
-  title: アプリを作ろう！ Visual C++入門
+  title: 僕は停滞気味
   price: 2000
-  label: 日経BP社
+  label: サザナミレーベル
   released: 2016-06-22
   is_major: true
 
 android:
   id: 5
   jan: 978-4-8222-9644-5
-  title: アプリを作ろう！ Android入門
+  title: エロス
   price: 2000
-  label: 日経BP社
+  label: サザナミレーベル
   released: 2015-08-21
   is_major: false
 
 php:
   id: 6
   jan: 978-4-7981-3547-2
-  title: 独習PHP 第3版 
+  title: MICHITONOSOGU
   price: 3200
-  label: 翔泳社
+  label: モジャーレコーズ
   released: 2016-04-08
   is_major: true
 
 swift:
   id: 7
   jan: 978-4-7741-7984-1
-  title: Swiftポケットリファレンス 
+  title: つしまげる
   price: 2780
-  label: 技術評論社
+  label: ビクターエンタテインメント
   released: 2016-03-04
   is_major: false
 
 docker:
   id: 8
   jan: 978-4-7981-4102-2
-  title: プログラマのためのDocker教科書
+  title: すてきな15才
   price: 3000
-  label: 翔泳社
+  label: モジャーレコーズ
   released: 2015-11-19
   is_major: false
 
 angular:
   id: 9
   jan: 978-4-7741-7568-3
-  title: AngularJSアプリケーションプログラミング
+  title: KICK!
   price: 3700
-  label: 技術評論社
+  label: ビクターエンタテインメント
   released: 2015-08-19
   is_major: false
 
 aspnet:
   id: 10
   jan: 978-4-7981-4402-3
-  title: 独習ASP.NET 第5版
+  title: AOKAJI
   price: 3800
-  label: 翔泳社
+  label: モジャーレコーズ
   released: 2016-01-21
   is_major: false

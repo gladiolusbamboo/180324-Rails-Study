@@ -1,0 +1,45 @@
+<%# 日付／時刻選択のための選択ボックスの作成 %>
+<%# date_select以外にもdatetime_select,time_select などが利用できる%>
+<%# 特定のオブジェクトに依存しないバージョンはselect_xxxxx %>
+<%= form_for(@cd) do |f| %>
+  <%# use_month_numbersは月を数値で表示する %>
+  <%= f.date_select :released, use_month_numbers: true %>
+<% end %>
+
+<%# ↓出力されるHTML
+<form class="edit_cd" id="edit_cd_1" action="/cds/1" accept-charset="UTF-8" method="post">
+<input name="utf8" type="hidden" value="&#x2713;" />
+<input type="hidden" name="_method" value="patch" />
+<input type="hidden" name="authenticity_token" value="50Tw+B0DLNMqADaFDW5Fcs9n3tcaysPHEVbVi3ztImGclMLDE6ytOrlKesuUxiJgyUXvsuDyLtfi09Vfg+juPQ==" />
+<select id="cd_released_1i" name="cd[released(1i)]">
+<option value="2011">2011</option>
+<option value="2012">2012</option>
+︙
+<option value="2015">2015</option>
+<option value="2016" selected="selected">2016</option>
+<option value="2017">2017</option>
+︙
+<option value="2020">2020</option>
+<option value="2021">2021</option>
+</select>
+<select id="cd_released_2i" name="cd[released(2i)]">
+<option value="1">1</option>
+<option value="2">2</option>
+︙
+<option value="8">8</option>
+<option value="9" selected="selected">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select>
+<select id="cd_released_3i" name="cd[released(3i)]">
+<option value="1">1</option>
+<option value="2">2</option>
+︙
+<option value="29">29</option>
+<option value="30" selected="selected">30</option>
+<option value="31">31</option>
+</select>
+
+</form>
+ %>
