@@ -1,0 +1,33 @@
+<p>数値を通過形式（デフォルトはドル）に変換</p>
+<%= number_to_currency(12345) %><br />
+<%# $12,345.00 %>
+<p>数値を通貨形式（円）に変換</p>
+<%= number_to_currency(12345, unit: '円', precision: 0, format: '%n%u') %><br />
+<%# 12,345円 %>
+<p>数値をMillionなどの単位に変換</p>
+<%= number_to_human(1234567) %><br />
+<%# 1.23 Million %>
+<p>数値をMillionの単位に変換（日本語化）</p>
+<%= number_to_human(1234567, units: { unit: "", million: "百万" }) %><br />
+<%# 1.23 百万 %>
+<p>バイト単位に変換（…使うか？）</p>
+<%= number_to_human_size(123456) %><br />
+<%# 121 KB %>
+<p>％単位に変換</p>
+<%= number_to_percentage(12.3456) %><br />
+<%# 12.346% %>
+<p>区切り文字をスラッシュに、小数点をコロンに変更する</p>
+<%= number_with_delimiter(1234567.89, delimiter: "/", separator: ":") %> <br />
+<%# 1/234/567:89  %>
+<p>区切り文字を設定し、デフォルトの小数点以下３ケタでまるめる</p>
+<%= number_with_precision(111123.4567, delimiter: ",") %><br />
+<%# 111,123.457 %>
+<p>小数点以下５ケタでまるめる</p>
+<%= number_with_precision(123.4567, precision: 5) %><br />
+<%# 123.45670 %>
+<p>小数を全体桁数５ケタでまるめる</p>
+<%= number_with_precision(123.4567, precision: 5, significant: true) %><br />
+<%# 123.46 %>
+<p>小数を全体桁数５ケタでまるめ、小数点以下の０を削除する</p>
+<%= number_with_precision(123.4, precision: 5, strip_insignificant_zeros: true) %>
+<%# 123.4  %>

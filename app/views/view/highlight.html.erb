@@ -1,0 +1,14 @@
+<% msg = 'KICK THE CAN CREW（キック・ザ・カン・クルー）は、日本のヒップホップグループ。通称「キック」、雑誌等では頭文字をとって「KTCC」とも表記される。' %>
+
+<%# キックの文字列をmarkタグで囲む %>
+<%= highlight(msg, 'キック') %><br />
+<%# ↓出力される文字列
+KICK THE CAN CREW（<mark>キック</mark>・ザ・カン・クルー）は、日本のヒップホップグループ。通称「<mark>キック</mark>」、雑誌等では頭文字をとって「KTCC」とも表記される。 %>
+
+<%# 任意の文字列で囲むこともできる。複数キーワードの指定も可能 %>
+<%# \1はプレースホルダー %>
+<%= highlight(msg, ['キック', 'KICK'],
+  highlighter: '<a href="search?keywd=\1">\1</a>') %>
+<%# ↓出力される文字列
+<a href="search?keywd=KICK">KICK</a> THE CAN CREW（<a href="search?keywd=キック">キック</a>・ザ・カン・クルー）は、日本のヒップホップグループ。通称「<a href="search?keywd=キック">キック</a>」、雑誌等では頭文字をとって「KTCC」とも表記される。
+%>

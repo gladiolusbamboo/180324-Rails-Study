@@ -1,0 +1,27 @@
+<%# sanitizeメソッドの挙動について %>
+
+<%
+msg = <<EOL
+<p style="color:Red">CUEZERO<br />ってまだ活動してるんですか</p>
+<strong id="hoge" class="myclazz">至急</strong>
+<a href="JavaScript:alert('NG')">こちらに回答お願いします。</a>
+<a href="https://ja.wikipedia.org/wiki/CUEZERO">Wikipedia</a>
+EOL
+%>
+<%= sanitize msg %>
+<%# 
+<p>CUEZERO<br>ってまだ活動してるんですか</p>
+<strong class="myclazz">至急</strong>
+<a>こちらに回答お願いします。</a>
+<a href="https://ja.wikipedia.org/wiki/CUEZERO">Wikipedia</a> 
+%>
+<hr />
+<%# 特定のタグや属性のみを許可 %>
+<%= sanitize msg, tags: %w(p a), attributes: %w(id class href style) %>
+<%# 
+<p style="color:Red;">CUEZEROってまだ活動してるんですか</p>
+至急
+<a>こちらに回答お願いします。</a>
+<a href="https://ja.wikipedia.org/wiki/CUEZERO">Wikipedia</a> 
+%>
+<%# JavaScript疑似プロトコルは常に除去される %>

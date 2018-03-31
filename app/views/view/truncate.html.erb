@@ -1,0 +1,13 @@
+<% msg = '<strong>KICK THE CAN CREW</strong>KICK THE CAN CREW（キック・ザ・カン・クルー）は、日本のヒップホップグループ。所属レコード会社はビクターエンタテインメント（インディーズ、及びLP版はBURGER INN RECORDSでリリース）。通称「キック」、雑誌等では頭文字をとって「KTCC」とも表記される。グループ名を直訳すると「缶を蹴る奴ら」。その由来は、それぞれ活動していた3人が初めてコラボレートした楽曲「カンケリ」から来ている。RHYMESTER等が在籍するコミュニティFUNKY GRAMMAR UNITや神輿ロッカーズの一員でもある。' %>
+
+<%# 先頭の100文字のみ表示。特殊文字は<% = %_>でエスケープされる %>
+<%= truncate(msg, length: 100) %><br />
+<%# &lt;strong&gt;KICK THE CAN CREW&lt;/strong&gt;KICK THE CAN CREW（キック・ザ・カン・クルー）は、日本のヒップホップグループ。所属レコード会社はビクターエンタ... %>
+
+<%# 先頭から100文字を超えない範囲で、separatorが最後に登場するところまで表示 %>
+<%= truncate(msg, length: 100, separator: '。') %><br />
+<%# &lt;strong&gt;KICK THE CAN CREW&lt;/strong&gt;KICK THE CAN CREW（キック・ザ・カン・クルー）は、日本のヒップホップグループ... %>
+
+<%# 切り捨てた文字列の部分の表示を設定 %>
+<%= truncate(msg, length: 100, omission: '...後略...') %>
+<%# &lt;strong&gt;KICK THE CAN CREW&lt;/strong&gt;KICK THE CAN CREW（キック・ザ・カン・クルー）は、日本のヒップホップグループ。所属レコード会社はビク...後略... %>

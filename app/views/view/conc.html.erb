@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th>ISBNコード</th><th>書名</th><th>価格</th>
+    <th>出版社</th><th>刊行日</th><th>ダウンロード</th>
+  </tr>
+
+<% @cds.each do |cd| %>
+  <tr>
+    <td><%= cd.jan %></td>
+    <td><%= cd.title %></td>
+    <td><%= cd.price %>円
+      <%# concatメソッドを使うことでスクリプトタグの内部で出力を行うことができる %>
+      <% if cd.price >= 3000
+        concat image_tag 'expensive.gif'
+      end %>
+    </td>
+<%
+=begin
+%>
+    <td><%= cd.price %>円
+      <% if cd.price >= 3000 %>
+      <%= image_tag 'expensive.gif' %>
+    <% end %>
+    </td>
+<%
+=end
+%>
+    <td><%= cd.label %></td>
+    <td><%= cd.released %></td>
+    <td><%= cd.is_major %></td>
+  </tr>
+<% end %>
+</table>

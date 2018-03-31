@@ -66,5 +66,12 @@ class ViewController < ApplicationController
   def fields
     @listener = Listener.find(1)
   end
-  
+
+  def conc
+    @cds = Cd.all
+  end
+
+  def no_escape
+    @msg = '<h1>h1</h1>';
+  end  
 end

@@ -1,0 +1,43 @@
+<%# simple_formatメソッドを使って文字列を整形する %>
+
+<%# ヒアドキュメント(<<識別子～識別子)を使うことで
+複数行の文字列をスマートに書ける %>
+
+<%
+article = <<EOL
+パルミジャーノ・レッジャーノ
+
+どんな味になりたいなんて
+誰のもとに行きたいなんて
+ずっとわかるわけないまんま
+ささやかでも笑いながら運命を生きたいな
+
+<script>alert('アミノ酸のかたまり');</script>
+EOL
+%>
+<%= simple_format(article, class: :article) %>
+
+<%# ↓出力されるHTML
+<p class="article">パルミジャーノ・レッジャーノ</p>
+
+<p class="article">どんな味になりたいなんて
+<br />誰のもとに行きたいなんて
+<br />ずっとわかるわけないまんま
+<br />ささやかでも笑いながら運命を生きたいな</p>
+
+<p class="article">alert('アミノ酸のかたまり');
+</p> %>
+
+<%= simple_format(article, {class: :article}, {sanitize: false, wrapper_tag: 'blockquote'}) %>
+
+<%# ↓出力されるHTML
+<blockquote class="article">パルミジャーノ・レッジャーノ</blockquote>
+
+<blockquote class="article">どんな味になりたいなんて
+<br />誰のもとに行きたいなんて
+<br />ずっとわかるわけないまんま
+<br />ささやかでも笑いながら運命を生きたいな</blockquote>
+
+<blockquote class="article"><script>alert('アミノ酸のかたまり');</script>
+</blockquote> 
+%>
