@@ -1,0 +1,6 @@
+<%# link_to_unless_currentメソッドの使い方 %>
+
+<%# リンク先が現在のページである場合にはリンクを生成しない %>
+<%= link_to_unless_current '一覧へ', action: :current %>｜
+<%= link_to_unless_current '詳細へ', action: :detail %>
+<%# 一覧へ｜<a href="/view/detail">詳細へ</a> %>

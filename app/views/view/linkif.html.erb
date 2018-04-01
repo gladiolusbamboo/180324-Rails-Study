@@ -1,0 +1,26 @@
+<%# link_to_if/link_to_unlessの例 %>
+
+<% @listener = Listener.new %>
+
+<%# 第一引数がtrueならリンクを生成し、 %>
+<%# falseならリンクのない固定テキストを生成する %>
+<%= link_to_if @listener.nil?, 'ログイン',
+  controller: :login, action: :index %><br />
+<%# <a href="/login/index">ログイン</a><br /> %>
+<%# (falseならテキストのみ) %>
+
+<%# falseならリンクを生成する。link_to_ifの逆 %>
+<%= link_to_unless @listener, 'ログイン',
+  controller: :login, action: :index %><br />
+<%# 出力結果は上と同じ %>
+
+<%# ブロックを渡すと、falseのときにはブロック内の処理を行う %>
+<%# 多分だけど使わないと思う（普通に条件分岐で書きたい） %>
+<%= link_to_if @listener.nil?, 'ログイン',
+  controller: :login, action: :index do |name|
+  link_to 'マイページ', controller: :login, action: :info
+end %>
+<%# ↓Trueの場合 %>
+<%# <a href="/login/index">ログイン</a> %>
+<%# ↓Falseの場合 %>
+<%# <a href="/login/info">マイページ</a> %>

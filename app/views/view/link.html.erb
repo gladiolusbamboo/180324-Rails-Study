@@ -1,0 +1,29 @@
+<%# link_toメソッドの使い方 %>
+
+<%# シンプルな例 %>
+<%= link_to 'はてブ', 'http://yjkym.hatenablog.com/' %>
+<%# <a href="http://yjkym.hatenablog.com/">はてブ</a> %>
+
+<%# コントローラーとアクションを指定する %>
+<%= link_to 'トップ', { controller: :yahoo, action: :index },
+  id: :link, class: :menu %>
+<%# URLを指定する部分を{}で囲ってオプションと区別してやる必要がある %>
+<%# ↓こっちのほうが分かりやすいかも %>
+<%# <%= link_to 'トップ', {controller: :yahoo, action: :index}, {id: :link, class: :menu} %_> %>
+
+<%# ビューヘルパーを使用してURLを指定する例 %>
+<%# cd_path({id値})はcds/{id値}のパスを返す %>
+<%# :deleteはHTTPメソッドの指定（アクション名ではない） %>
+<%= link_to '削除', cd_path(1),
+  { method: :delete, data: { confirm: '削除しても良いですか？'} } %>
+<%# <a data-confirm="削除しても良いですか？" rel="nofollow" data-method="delete" href="/cds/1">削除</a> %>
+
+<%# ブロックを使うとブロックの中身がリンクテキストになるっぽい %>
+<%# ちゃんと説明してほしい %>
+<% @cd = Cd.find(1) %>
+<%= link_to cd_path(@cd) do
+  image_tag "http://kankeli.net/review100/images/cd/shuudankoudou_juubunmirai.jpg"
+end %>
+<%# <a href="/cds/1"><img src="http://kankeli.net/review100/images/cd/shuudankoudou_juubunmirai.jpg" alt="Shuudankoudou juubunmirai" /></a> %>
+
+</a>

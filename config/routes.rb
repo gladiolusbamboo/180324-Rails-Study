@@ -80,4 +80,20 @@ Rails.application.routes.draw do
   get  'view/number_to'
 
   get  'view/datetime'
+
+  get  'view/link'
+
+  get  'view/urlfor'
+  get  'view/new'
+  get  'members/login'
+
+  get  'login/index'
+  get  'login/info'
+
+  get  'view/linkif'
+
+  get  'view/current'
+  get  'view/detail'
+
+  get  'view/mailto'
 end

@@ -73,5 +73,14 @@ class ViewController < ApplicationController
 
   def no_escape
     @msg = '<h1>h1</h1>';
-  end  
+  end
+
+  # url_forメソッドなどで返すURLのデフォルト設定の変更
+  # options={}はデフォルト値付きの引数を設定している
+  # Rubyではreturnを省略する（ややこい）
+  # def default_url_options(options={})
+  #   {
+  #     charset: 'utf-8'
+  #   }
+  # end
 end

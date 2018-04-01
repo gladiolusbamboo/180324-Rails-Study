@@ -1,0 +1,39 @@
+<%# url_forメソッドでURLを生成する例 %>
+<%# link_toメソッドのURL指定も同様に行える %>
+
+<%# ルート定義を元にURLを生成する %>
+
+<%# アクションのみを指定した場合は現在のコントローラーからのリンクを生成する %>
+<%= url_for(action: :new) %><br />
+<%# /view/new %>
+
+<%# コントローラーとアクションを指定した例 %>
+<%# ↓routes.rbを参照して適切なURLを生成してくれる %>
+<%# # GET    /cds/:id(.:format)      cds#show %>
+<%= url_for(controller: :cds, action: :show, id: 5,
+  anchor: 'rails', charset: 'utf8') %><br />
+<%# /cds/5?charset=utf8#rails %>
+
+<%# only_pathをfalseにすることで絶対URLで返す %>
+<%= url_for(action: :login, controller: :members,
+  only_path: false, protocol: 'https') %><br />
+<%# https://localhost:3000/members/login %>
+
+<%# オブジェクトを直接渡す例 %>
+<%# 主キーからURLを生成する %>
+<% @cd = Cd.find(2) %>
+<%= url_for(@cd) %><br />
+<%# /cds/2 %>
+
+<%# ブラウザバックのやつ %>
+<%= url_for(:back) %>
+<%# javascript:history.back() %>
+
+<%# コントローラーでdefault_url_optionsメソッドを %>
+<%# オーバーライドすることでURLのデフォルト設定を変更することができる %>
+<%# ↓コントローラーに書く %>
+<%# def default_url_options(options={}) %>
+<%# { %>
+<%# charset: 'utf-8' %>
+<%# } %>
+<%# end %>
