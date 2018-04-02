@@ -78,9 +78,9 @@ class ViewController < ApplicationController
   # url_forメソッドなどで返すURLのデフォルト設定の変更
   # options={}はデフォルト値付きの引数を設定している
   # Rubyではreturnを省略する（ややこい）
-  # def default_url_options(options={})
-  #   {
-  #     charset: 'utf-8'
-  #   }
-  # end
+  def default_url_options(options={})
+    {
+      charset: 'utf-8'
+    }
+  end
 end

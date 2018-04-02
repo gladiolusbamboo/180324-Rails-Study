@@ -1,0 +1,10 @@
+<%# video_tagの使用例 %>
+
+<%# デフォルトでassets/video
+sを参照する（自分で作る） %>
+<%# あとはimages同様 %>
+<%# controls: コントロールパネルを表示 %>
+<%# poster: サムネイル画像 %>
+<%= video_tag 'waterfall.mp4', controls: true, autoplay: false,
+  loop: true, size: '300x150', poster: 'dokkoisehouse_pilotisgrow.jpg' %>
+<%# <video controls="controls" loop="loop" poster="/assets/dokkoisehouse_pilotisgrow-73a8770253223972b0e9d21f69d9babd3ef120ba83e3b1349192780393ae7e03.jpg" width="300" height="150" src="/assets/waterfall-cd42895e0c16f94f8c7456be79fa7f7f5307727f4fa125185cd4e93e97194869.mp4"></video> %>

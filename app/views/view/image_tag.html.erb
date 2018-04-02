@@ -1,0 +1,22 @@
+<%# image_tagの使い方 %>
+
+<%# シンプルな使い方 %>
+<%# ファイル名のみの場合は/app/assets/imagesフォルダーが参照される %>
+<%= image_tag 'yuki_sutekina15sai.jpg' %><br />
+<%# <img src="/assets/yuki_sutekina15sai-2a7a2ac1bf0f5278a8cc2efbaf36d4936d5454c2000db30881a33e76fd111ecd.jpg" alt="Yuki sutekina15sai" /><br /> %>
+
+<%# /で始まっているURLを指定した場合はpublicフォルダー配下を参照する %>
+<%= image_tag '/icons/aoikajitsu_aokaji.jpg' %><br />
+<%# <img src="/icons/aoikajitsu_aokaji.jpg" alt="Aoikajitsu aokaji" /><br /> %>
+
+<%# 外部URLを参照する方法 %>
+<%= image_tag 'http://kankeli.net/review100/images/cd/scarfandthesuspenders_invitation.jpg' %><br />
+<%# <img src="http://kankeli.net/review100/images/cd/scarfandthesuspenders_invitation.jpg" alt="Scarfandthesuspenders invitation" /><br /> %>
+
+<%# altやサイズを指定する例１ %>
+<%= image_tag 'kentfunayama_boyslife.jpg', alt: 'Kent Funayama', size: '120x90' %><br />
+<%# <img alt="Kent Funayama" src="/assets/kentfunayama_boyslife-9ff901be894fa08dcd9da465250ac560cbbe037e12bf13663793acffea42cd97.jpg" width="120" height="90" /><br /> %>
+
+<%# altやサイズを指定する例２ %>
+<%= image_tag 'dokkoisehouse_pilotisgrow.jpg', alt: 'DOKKOISE HOUSE', width: 120, height: 90 %><br />
+<%# <img alt="DOKKOISE HOUSE" width="120" height="90" src="/assets/dokkoisehouse_pilotisgrow-73a8770253223972b0e9d21f69d9babd3ef120ba83e3b1349192780393ae7e03.jpg" /><br /> %>

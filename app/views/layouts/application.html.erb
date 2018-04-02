@@ -7,6 +7,23 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%# auto_discovery_link_tagの使い方（よくわからん） %>
+    <%= auto_discovery_link_tag(:rss,
+    { controller: :cds, action: :index, id: :rails },
+    title: 'カロリーメイトください'
+    ) %>
+    <%# <link rel="alternate" type="application/rss+xml" title="カロリーメイトください" href="http://localhost:3000/cds?charset=utf-8&amp;id=rails" /> %>
+
+    <%# アイコン画像の指定方法 %>
+    <%# /assets/images/配下を参照 %>
+    <%# ファイル名を指定しない場合favicon.ico %>
+    <%= favicon_link_tag %>
+    <%# ファイル名を指定することもできる %>
+    <%# 処理は上と同じ %>
+    <%#= favicon_link_tag 'favicon.ico' %>
+    <%# .ico以外のファイルを指定することもできる %>
+    <%#= favicon_link_tag 'fav-icon.png', type: 'image/png' %>
   </head>
 
   <body>

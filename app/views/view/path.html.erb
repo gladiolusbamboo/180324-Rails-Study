@@ -1,0 +1,17 @@
+<%# xxxxx_path/xxxx_urlメソッドの使い方 %>
+
+<%# asetts配下を参照して適切なURLを返してくれる %>
+<%# assets以下のフォルダ構成は返り値に反映されないようだ %>
+<%= image_path('dokkoisehouse_pilotisgrow') %><br />
+<%# /assets/dokkoisehouse_pilotisgrow-73a8770253223972b0e9d21f69d9babd3ef120ba83e3b1349192780393ae7e03.jpg %>
+
+<%# assets配下にファイルがなかった場合はpublic配下からのパスが返される %>
+<%# …らしいがエラーになった。　仕様が変わった？ %>
+<%#= image_path('gadoro_hanamizuki') %><br />
+
+<%= javascript_path('application') %><br />
+<%# /assets/application-1e00fa7ee3e2b3380f40119fc3db081e61edb35c03a8c96b741f71883e039c2a.js %>
+
+<%# xxxx_urlメソッドはパスではなくURL形式で返す %>
+<%= stylesheet_url('application') %>
+<%# http://localhost:3000/assets/application-fa47f67932f8605e167f6c5bc47f3025890a16ff92745062ec106e4882be935c.css %>
