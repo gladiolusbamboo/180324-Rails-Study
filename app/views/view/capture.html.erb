@@ -1,0 +1,10 @@
+<%# captureメソッドでビューのコードごと変数に代入できる %>
+<% @current = capture do %>
+ただいまの時刻は<%= Time.now %>です。
+<% end %>
+<%= @current %>
+<div style="color:Red"><%= @current %></div>
+<%# ただいまの時刻は2018-04-03 04:27:53 +0000です。 %>
+<%# <div style="color:Red">ただいまの時刻は2018-04-03 04:27:53 +0000です。
+</div> %>
+

@@ -1,0 +1,13 @@
+<%# 内容を持つHTMLタグを生成する（どこで使う？） %>
+<%= content_tag :p, 'カロリーメイトください', id: :calorie, class: :mate %><br />
+<%# <p id="calorie" class="mate">カロリーメイトください</p> %>
+
+<%# ブロックとして内容を渡すこともできる %>
+<%= content_tag :p, id: :calorie, class: :mate do %>
+  カロリーメイトください
+<% end %><br />
+<%# <p id="calorie" class="mate">カロリーメイトください</p> %>
+
+<%# 入れ子にもできる %>
+<%= content_tag :b, content_tag(:p, 'カロリーメイトください'), id: :calorie %>
+<%# <b id="calorie"><p>カロリーメイトください</p></b> %>
