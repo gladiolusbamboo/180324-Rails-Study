@@ -1,0 +1,13 @@
+<%# ビューヘルパーを使う例(helpers/view_helper.rb参照) %>
+<%# ビューヘルパーはhelpers配下に記述する %>
+
+<% current = Time.now %>
+
+<%= format_datetime(current, :datetime) %><br />
+<%# 2018年04月04日 04:42:48<br /> %>
+
+<%= format_datetime(current, :date) %><br />
+<%# 2018年04月04日<br /> %>
+
+<%= format_datetime(current, :time) %><br />
+<%# 04:42:48<br /> %>
