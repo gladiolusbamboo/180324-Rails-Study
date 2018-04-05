@@ -1,0 +1,6 @@
+ここはレイアウトテンプレートのparent.html.erb内で記述されています<br>
+<%# ↓ここには子テンプレートでcontent_forメソッドで %>
+<%# :contentに渡された内容が入る %>
+<%= yield(:content) %>
+<%# <%= content_for?(:content) ? yield(:content) : yield %_> %>
+ここもレイアウトテンプレートのparent.html.erb内で記述されています<br>

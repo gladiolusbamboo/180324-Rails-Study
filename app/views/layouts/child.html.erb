@@ -1,0 +1,16 @@
+<%# テンプレートの入れ子 %>
+<%# 子テンプレートではcontent_forメソッドを使って %>
+<%# 親テンプレートから呼び出せるようにする %>
+
+<%# 親テンプレートからはyield(:content)で呼び出せる %>
+<% content_for :content do %>
+ここはレイアウトテンプレートのchild.html.erb内で記述されています<br>
+<%# ここは通常のレイアウトファイルが適用されたコンテンツ %>
+<%# view/nest.html.erbの内容が入る %>
+<%= yield %><br>
+ここもレイアウトテンプレートのchild.html.erb内で記述されています<br>
+<% end %>
+<%# 親テンプレートを呼び出す %>
+<%# テンプレートからテンプレートを呼び出すときは %>
+<%# render template:を使う %>
+<%= render template: 'layouts/parent' %>

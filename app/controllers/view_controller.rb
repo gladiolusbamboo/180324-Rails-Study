@@ -83,4 +83,17 @@ class ViewController < ApplicationController
       charset: 'utf-8'
     }
   end
+
+  def multi
+    # layoutレイアウトを設定
+    render layout: 'layout'
+  end
+
+  # テンプレートの入れ子
+  def nest
+    @msg = 'view_controllerで設定したメッセージ'
+    # コントローラーからの呼び出しはrender layout:を使う
+    # layouts/child.html.erbを呼び出す
+    render layout: 'child'
+  end
 end

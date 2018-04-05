@@ -2,7 +2,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Railbook</title>
+    <%# コントローラーから@titleが渡されなかった場合、 %>
+    <%# デフォルトのタイトルを表示する %>
+    <title><%= @title || 'カロリーメイトください' %></title>
+    <%# provideヘルパーでレイアウトからタイトルを渡すこともできる %>
+    <%# <title><%= yield(:title) || 'カロリーメイトください' %_></title> %>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>

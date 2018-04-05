@@ -1,4 +1,17 @@
 class CdsController < ApplicationController
+  # コントローラー単位でレイアウトを設定する場合、
+  # layouts配下にコントローラーと同名のレイアウトファイルを作成する
+
+  # レイアウトを指定したい場合
+  # layout 'my_layout'
+  # falseを指定した場合、レイアウトを適用しない
+
+  # アクション単位でレイアウトを設定したい場合
+  # def adopt
+  #   render layout: 'my_layout'
+  # end
+  # falseを指定した場合、レイアウトを適用しない
+
   # before_action: アクションメソッドの前に実行するメソッドを指定する
   # このようなメソッドをフィルターという
   before_action :set_cd, only: [:show, :edit, :update, :destroy]

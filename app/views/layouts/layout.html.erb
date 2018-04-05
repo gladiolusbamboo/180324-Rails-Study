@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title ? @title : 'カロリミッツください' %></title>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<%# 固有のレイアウトファイルで %>
+<%# content_for :extend_menu %>
+<%# ブロック内に記述する %>
+ <%= yield :extend_menu %>
+<hr />
+ここは共通レイアウトファイル内で定義されています
+<hr />
+<%= yield %>
+</body>
+</html>
