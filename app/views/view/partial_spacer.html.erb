@@ -1,0 +1,5 @@
+<%# 部分テンプレートでセパレータテンプレートを利用する %>
+<div id="list">
+  <%# ついでにレイアウトも適用する %>
+  <%= render partial: 'cds/cd', collection: @cds, spacer_template: 'separator', layout: 'cds/frame' %>
+</div>

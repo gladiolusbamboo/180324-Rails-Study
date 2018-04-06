@@ -1,0 +1,22 @@
+<div id="list">
+
+  <%# 配列を渡してもいい感じに処理してくれる %>
+  <%# @cdの渡し方 %>
+  <%# render 'cds/cd', cd: @cd, type: :details %>
+  <%# ただし、partialの指定が必須 %>
+  <%= render partial: 'cds/cd', collection: @cds, type: :details %>
+  <%#= debug(@cds) %>
+
+  <%# eachメソッドを使用する書き方 %>
+<%
+=begin
+<% @cds.each do |cd| %>
+  <%= render 'cds/cd', cd: cd, type: :details %>
+<% end %>
+=end
+%>
+
+  <%# collectionオプションの省略形 %> 
+  <%#= render @cds, type: :details %>
+
+</div>

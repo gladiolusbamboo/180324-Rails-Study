@@ -1,0 +1,21 @@
+<%# 部分テンプレート %>
+<%# 部分テンプレートはファイル名の先頭に_をつける %>
+
+<%# モデルに強く関連づいた部分テンプレートは %>
+<%# views/モデル名（複数）/_モデル名（単数）.html.erb %>
+<%# という名前で保存する %>
+
+<%# cd はメインテンプレートで設定されている %>
+<p>
+<%# collectionオプションが使用された場合は、xxxxx_iterationという予約変数を利用できる %>
+<%= cd_iteration.index + 1 %>
+<% type = :details if type.nil? %>
+<% if type == :details %>
+詳細！
+<% end %>
+<%= cd.title %><br />
+レーベル<%= cd.label %><br />
+定価 <%= cd.price %>円（＋税）<br />
+JAN <%= cd.jan %><br />
+リリース： <%= cd.released %>
+</p>

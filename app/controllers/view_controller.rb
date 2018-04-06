@@ -96,4 +96,21 @@ class ViewController < ApplicationController
     # layouts/child.html.erbを呼び出す
     render layout: 'child'
   end
+
+  def partial_basic
+    @cd = Cd.find(1)
+    # pp @cd.title
+  end
+
+  def partial_param
+    @cd = Cd.find(1)
+  end
+
+  def partial_col
+    @cds = Cd.all
+  end
+
+  def partial_spacer
+    @cds = Cd.all
+  end
 end
