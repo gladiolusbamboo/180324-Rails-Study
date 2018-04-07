@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<!-- alertでの書き換え -->
+<!--<p id="alert"><%= alert %></p>-->
+
+<!-- flashメソッドでの書き換え -->
+<!-- <p id="notice"><%#= flash[:msg] %></p> -->
+
+<!-- infoキーでの書き換え -->
+<!-- <p id="notice"><%#= info %></p> -->
+
+<p>
+  <strong>Jan:</strong>
+  <%= @cd.jan %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cd.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @cd.price %>
+</p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @cd.label %>
+</p>
+
+<p>
+  <strong>Released:</strong>
+  <%= @cd.released %>
+</p>
+
+<p>
+  <strong>Is_major:</strong>
+  <%= @cd.is_major %>
+</p>
+
+<%= link_to 'Edit', edit_cd_path(@cd) %> |
+<%= link_to 'Back', cds_path %>

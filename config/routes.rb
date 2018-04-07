@@ -127,4 +127,7 @@ Rails.application.routes.draw do
   get  'view/partial_param'
   get  'view/partial_col'
   get  'view/partial_spacer'
+
+  get  'record/find'
+  get  'record/find_by'
 end
