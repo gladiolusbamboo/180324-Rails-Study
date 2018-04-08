@@ -1,0 +1,11 @@
+<table>
+<tr>
+  <th>レーベル</th><th>価格</th>
+</tr>
+<% @cds.each do |cd| %>
+  <tr>
+    <td><%= cd.label %></td>
+    <td><%= cd.avg_price.round %>円</td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,12 @@
+<%# POST検索サンプル %>
+<%= form_tag action: :ph1 do %>
+  <div class="field">
+    <%= label_tag :label, 'レーベル：' %>
+    <%= text_field_tag :label %>
+  </div>
+  <div class="field">
+    <%= label_tag :price, '最低価格：' %>
+    <%= text_field_tag :price %>
+  </div>
+  <%= submit_tag '検索' %>
+<% end %>
