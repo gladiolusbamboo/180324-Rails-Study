@@ -18,7 +18,7 @@ class RecordController < ApplicationController
     # [["label", "サザナミレーベル"], 
     # ["LIMIT", 1]]
 
-    # find_byは１県のみ取得する
+    # find_byは１件のみ取得する
 
     render 'yahoo/show'
   end
@@ -272,5 +272,91 @@ class RecordController < ApplicationController
         @cds = Cd.none
     end
     render 'cds/index'
+  end
+
+  # 指定列の配列を取得する
+  def pluck
+    render plain: Cd.where(label: 'サザナミレーベル').pluck(:title, :price)
+    # SQL
+    # SELECT "cds"."title", "cds"."price" FROM "cds" WHERE "cds"."label" = ?  [["label", "サザナミレーベル"]]
+    # 出力結果
+    # [["僕は停滞気味", 2000], ["エロス", 2000]]
+  end
+
+  # レコードの存在を確認する
+  def exists
+    flag = Cd.where(label: 'サザナミレーベル').exists?
+    render plain: "存在するか？ : #{flag}"
+    # SQL
+    # SELECT 1 AS one FROM "cds" WHERE "cds"."label" = ? LIMIT ?  [["label", "サザナミレーベル"], ["LIMIT", 1]]
+    # 出力結果
+    # 存在するか？ : true
+    # その他の例
+    # 主キー検索
+    # flag = Cd.exists?(1) 
+    # レーベル名指定
+    # flag = Cd.exists?(label: > 'サザナミレーベル') 
+    # 5000円以上
+    # flag = Cd.exists?(['price > ?', 5000]) 
+  end
+
+  # 名前付きスコープの使用例
+  def scope
+    # 名前付きスコープ（検索条件）はモデルファイル内で定義する
+    @cds = Cd.sazanami
+    render 'yahoo/list'
+    # SQL
+    # SELECT "cds".* FROM "cds" WHERE "cds"."label" = ?  [["label", "サザナミレーベル"]]
+
+    # パラメータ化したスコープの呼び出し例
+    # @cds = Cd.whats_new('サザナミレーベル')
+  end
+
+  # デフォルトスコープの使用例
+  def def_scope
+    # デフォルトスコープ（検索条件）はモデルファイル内で定義する
+    render plain: Review.all.inspect
+    # SQL
+    # SELECT  "reviews".* FROM "reviews" ORDER BY "reviews"."updated_at" DESC LIMIT ?  [["LIMIT", 11]]
+    # デフォルトスコープを解除したい場合はunscope()メソッドを使えばいいらしい
+  end
+
+  def count
+    cnt = Cd.where(label: 'サザナミレーベル').count
+    render plain: "#{cnt}件です"
+    # SQL
+    # SELECT COUNT(*) FROM "cds" WHERE "cds"."label" = ?  [["label", "サザナミレーベル"]]
+    # その他の例
+    # 主キー検索
+    # cnt = Cd.count 
+    # label列が空でないレコードの件数
+    # cnt = Cd.count(:label) 
+    # label列の種類
+    # cnt = Cd.distinct.count(:label) 
+  end
+
+  def average
+    price = Cd.where(label: 'サザナミレーベル').average(:price)
+    render plain: "平均価格は#{price}円です。"
+  end
+
+  def groupby2
+    @cds = Cd.group(:label).average(:price)
+    render plain: @cds
+    # SQL
+    # SELECT AVG("cds"."price") AS average_price, "cds"."label" AS cds_label FROM "cds" GROUP BY "cds"."label"
+    # 出力結果
+    # {"エピックレコードジャパン"=>0.28e4, "サザナミレーベル"=>0.2e4, "ビクターエンタテインメント"=>0.3035e4, "モジャーレコーズ"=>0.333333333333333e4}
+
+    # ↓とだいたい同じだけど呼び出し方法が異なる
+    # @cds = Cd.select('label, AVG(price) AS avg_price').group(:label)
+    # ↑呼び出し方が直感的なので、こっちの方法を推奨
+  end
+
+  def literal_sql
+    @cds = Cd.find_by_sql(['SELECT label, AVG(price) AS avg_price FROM "cds" GROUP BY label HAVING AVG(price) >= ?', 2500])
+    render 'record/groupby'
+    # SQL
+    # SELECT label, AVG(price) AS avg_price FROM "cds" GROUP BY label HAVING AVG(price) >= 2500
   end
 end
