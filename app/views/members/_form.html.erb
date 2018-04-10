@@ -1,0 +1,31 @@
+<%= form_with(model: member, local: true) do |form| %>
+  <% if member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(member.errors.count, "error") %> prohibited this member from being saved:</h2>
+
+      <ul>
+      <% member.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :member_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :member_email %>
+  </div>
+
+  <%# 隠しフィールドとしてlock_versionを仕込んで %>
+  <%# オプティミスティック同時実行制御を行う %>
+  <%= form.hidden_field :lock_version %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

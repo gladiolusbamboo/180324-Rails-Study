@@ -1,0 +1,20 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  name: 小林未奈
+  email: kobayashi@calorie.mate
+  lock_version: 0
+
+two:
+  id: 2
+  name: せりかな
+  email: serikana@calorie.mate
+  lock_version: 0
+
+
+three:
+  id: 3
+  name: 泉川そら
+  email: sora@calorie.mate
+  lock_version: 0

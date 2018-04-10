@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329053628) do
+ActiveRecord::Schema.define(version: 20180410052604) do
 
   create_table "artists", force: :cascade do |t|
     t.integer "listener_id"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(version: 20180329053628) do
     t.boolean "is_male"
     t.string "roles"
     t.integer "reviews_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "lock_version", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

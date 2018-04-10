@@ -1,5 +1,6 @@
 # ルーティング設定を指定する
 Rails.application.routes.draw do
+  resources :members
   resources :fan_comments
   resources :reviews
   resources :artists
@@ -176,4 +177,17 @@ Rails.application.routes.draw do
   get  'record/groupby2'
 
   get  'record/literal_sql'
+
+  get  'record/update_all'
+  get  'record/update_all2'
+
+  get  'record/destroy2/:id', to: 'record#destroy2'
+  get  'record/delete/:id', to: 'record#delete'
+
+  get  'record/destroy_all'
+  get  'record/delete_all'
+
+  get  'record/transact'
+
+  get  'record/enum_rec'
 end

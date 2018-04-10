@@ -359,4 +359,185 @@ class RecordController < ApplicationController
     # SQL
     # SELECT label, AVG(price) AS avg_price FROM "cds" GROUP BY label HAVING AVG(price) >= 2500
   end
+
+  # レコードの更新例
+  def update_all
+    cnt = Cd.where(label: 'omake records')
+            .update_all(label: 'サザナミレーベル')
+    render plain: "#{cnt}件のデータを更新しました。"    
+    # UPDATE "cds" 
+    # SET "label" = 'omake records' 
+    # WHERE "cds"."label" = ?  
+    # [["label", "サザナミレーベル"]]
+  end
+
+  # レコードの更新例２
+  def update_all2
+    cnt = Cd.order(:label)
+            .limit(5)
+            .update_all('price = price * 0.8')
+    render plain: "#{cnt}件のデータを更新しました。"    
+    # UPDATE "cds" 
+    # SET price = price * 0.8 
+    # WHERE "cds"."id" 
+    # IN (
+    #   SELECT "cds"."id" 
+    #   FROM "cds" 
+    #   ORDER BY "cds"."label" ASC 
+    #   LIMIT ?
+    # )
+    # [["LIMIT", 5]]
+  end
+
+  def destroy2
+    # 削除件数は帰らなかった
+    Cd.destroy(params[:id])
+    # SELECT  "cds".* 
+    # FROM "cds" 
+    # WHERE "cds"."id" = ? 
+    # LIMIT ?  
+    # [["id", 1], 
+    # ["LIMIT", 1]]
+
+    # DELETE FROM "artists_cds" 
+    # WHERE "artists_cds"."cd_id" = ?  
+    # [["cd_id", 1]]
+
+    # DELETE FROM "cds" 
+    # WHERE "cds"."id" = ?  [["id", 1]]
+  end
+
+  def delete
+    # 関連モデルは削除せずに単純にdeleteのみ行う
+    # 削除件数も返るっぽい
+    cnt = Cd.delete(params[:id])
+    render plain: "#{cnt}件のデータを削除しました。"    
+    # DELETE FROM "cds" 
+    # WHERE "cds"."id" = ?  
+    # [["id", 1]]
+  end
+
+  def destroy_all
+    # 返り値は削除したモデルの配列
+    Cd.where.not(label: 'サザナミレーベル').destroy_all
+    render plain: "データをすべて削除しました。"  
+    # SELECT "cds".* 
+    # FROM "cds" 
+    # WHERE ("cds"."label" != ?)  
+    # [["label", "サザナミレーベル"]]
+
+    # DELETE FROM "artists_cds" 
+    # WHERE "artists_cds"."cd_id" = ?
+    # [["cd_id", 2]]
+  
+    # DELETE FROM "cds" 
+    # WHERE "cds"."id" = ?  
+    # [["id", 2]]  
+  end
+
+  def delete_all
+    # 返り値は削除した件数
+    cnt = Cd.where.not(label: 'サザナミレーベル').delete_all
+    render plain: "#{cnt}件のデータを削除しました。"  
+    # DELETE FROM "cds" 
+    # WHERE ("cds"."label" != ?)  
+    # [["label", "サザナミレーベル"]]
+  end
+
+  # トランザクション処理の例
+  def transact
+    # モデル、もしくはインスタンス経由でtransactionを呼び出す
+    Cd.transaction do
+      c1 = Cd.new(
+        jan: '978-4-7741-5067-3',
+        title: 'ダイエッター',
+        price: 2500,
+        label: 'FLAVOR RECORDS',
+        released: '2018-03-21'
+      )
+      # save()はtrue/falseを返し、
+      # save!()は失敗した場合に例外を返す
+      # 例外が発生するとrescueブロックが実行される
+      c1.save!
+      # throwだ！
+      # raise '例外発生：処理はキャンセルされました'
+      c2 = Cd.new(
+        jan: '978-4-7741-5067-5',
+        title: 'dinosaur',
+        price: 2500,
+        label: 'nom records',
+        released: '2018-02-13'
+      )
+      c2.save!
+    end
+    # begin transaction
+    # INSERT INTO "cds" ("jan", "title", "price", "label", "released", "created_at", "updated_at") 
+    # VALUES (?, ?, ?, ?, ?, ?, ?) 
+    # [["jan", "978-4-7741-5067-3"], 
+    #  ["title", "ダイエッター"], 
+    # ["price", 2500], 
+    # ["label", "FLAVOR RECORDS"], 
+    # ["released", "2018-03-21"], 
+    # ["created_at", "2018-04-10 04:53:19.064469"], 
+    # ["updated_at", "2018-04-10 04:53:19.064469"]]
+    # commit transaction
+    render plain: 'トランザクションは成功しました'
+  # catchだ！
+  rescue => e
+    render plain: e.message
+    # begin transaction
+    # INSERT INTO "cds" ("jan", "title", "price", "label", "released", "created_at", "updated_at") 
+    # VALUES (?, ?, ?, ?, ?, ?, ?)  
+    # [["jan", "978-4-7741-5067-3"], 
+    #  ["title", "ダイエッター"], 
+    #  ["price", 2500], 
+    #  ["label", "FLAVOR RECORDS"], 
+    #  ["released", "2018-03-21"], 
+    #  ["created_at", "2018-04-10 04:55:11.265965"], 
+    #  ["updated_at", "2018-04-10 04:55:11.265965"]]
+    # rollback transaction
+
+  # 補足 ： トランザクション分離レベルの指定例
+  # 必要になったら調べよう。とりあえずSQLiteは対応していない
+  # だいたいREAD COMMITTEDかREPEATABLE READにしとけばいいんじゃね？
+  # Cd.transaction(isolation: :repeatable_read) do
+  #   @cd = Cd.find(1)
+  #   @cd.update(price: 3000)
+  # end
+  end
+
+  # 列挙型の利用例
+  def enum_rec
+    @review = Review.find(1)
+    # 列挙体statusがpublishedに設定されているレコードのみを取得
+    # @review = Review.published.where(.....)
+    # SELECT  "reviews".* 
+    # FROM "reviews" 
+    # WHERE "reviews"."status" = ? 
+    # ORDER BY "reviews"."updated_at" DESC 
+    # LIMIT ?  
+    # [["status", 1], 
+    #  ["LIMIT", 11]]
+
+    # 列挙型の設定（必要ない場合はSQLは発行されない）
+    @review.published!
+    # 他の書き方の例
+    # @review.status = 1
+    # @review.status = :published
+
+    # UPDATE "reviews" 
+    # SET 
+    #   "status" = ?, 
+    #   "updated_at" = ? 
+    # WHERE "reviews"."id" = ?  
+    # [["status", 1], 
+    #  ["updated_at", "2018-04-10 06:55:00.583813"], 
+    #  ["id", 1]]
+
+    render plain: 'ステータス：' + @review.status
+    # 列挙型自体をモデルとして作成すると
+    # 複数のモデルから参照できるかもしれない
+
+    # render plain: @review.inspect
+  end
 end
