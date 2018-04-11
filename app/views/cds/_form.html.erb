@@ -24,8 +24,8 @@
   <%# ↓入力値検証で発生したエラー情報を表示するためのコード %>
   <% if cd.errors.any? %>
     <div id="error_explanation">
+      <%# pluralizeは数値によって単数形／複数形を返す %>
       <h2><%= pluralize(cd.errors.count, "error") %> prohibited this cd from being saved:</h2>
-
       <ul>
       <% cd.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -34,6 +34,16 @@
     </div>
   <% end %>
   <%# ↑ここまで %>
+  <%# エラー発生時の出力 %>
+  <%# <ul>
+    <li>Jan can't be blank</li>
+    <li>Jan is the wrong length (should be 17 characters)</li>
+    <li>Jan is invalid</li>
+    <li>Title can't be blank</li>
+    <li>Title is too short (minimum is 1 character)</li>
+    <li>Price is not a number</li>
+    <li>Label is not included in the list</li>
+  </ul> %>
 
   <div class="field">
     <%# .labelも.text_fieldも.number_fieldも %>
@@ -49,6 +59,11 @@
     <%# <label for="cd_jan">Jan</label> %>
     <%# <input id="cd_jan" type="text" name="cd[jan]" /> %>
   </div>
+  <%# エラー発生時の出力 %>
+  <%# <div class="field"> %>
+    <%# <div class="field_with_errors"><label for="cd_jan">JANコード</label></div> %>
+    <%# <div class="field_with_errors"><input id="cd_jan" type="text" value="" name="cd[jan]"></div> %>
+  <%# </div> %>
 
   <div class="field">
     <%= form.label :title %>
@@ -61,6 +76,11 @@
     <%# ↓出力されるHTML %>
     <%# <label for="cd_price">Price</label> %>
     <%# <input id="cd_price" type="number" name="cd[price]" />  %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :label %>
+    <%= form.text_field :label %>
   </div>
 
   <div class="field">

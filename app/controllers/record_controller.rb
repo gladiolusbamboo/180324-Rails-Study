@@ -540,4 +540,25 @@ class RecordController < ApplicationController
 
     # render plain: @review.inspect
   end
+
+
+  def keywd
+    # SearchKeywordは非データベース系のモデルで
+    # モデル配下で設定している
+    # データベース内には保存されていないことに注意
+    @search = SearchKeyword.new
+  end
+
+  def keywd_process   
+    # 非データベース系のモデルの作成方法
+    @search = SearchKeyword.new(params.require(:search_keyword).permit(:keyword))
+    # バリデーションの利用方法
+    # models/search_keyword.rbで定義している
+    if @search.valid?
+      render plain: @search.keyword
+    else
+      render plain: @search.errors.full_messages[0]
+    end
+  end
+
 end

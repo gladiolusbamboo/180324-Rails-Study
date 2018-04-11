@@ -69,6 +69,6 @@ class ListenersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listener_params
-      params.require(:listener).permit(:listenername, :password_digest, :email, :is_male, :roles, :reviews_count)
+      params.require(:listener).permit(:listenername, :password_digest, :email, :email_confirmation, :is_male, :roles, :agreement)
     end
 end

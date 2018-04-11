@@ -42,10 +42,19 @@ class CdsController < ApplicationController
   # _form.html.erbのフォームから
   # /cdsにPOSTで入力データが渡されて発火する
   def create
+    # Unique検証で以下のSQLが発行される
+    # SELECT 1 AS one
+    # FROM "cds" 
+    # WHERE "cds"."jan" = ? 
+    # LIMIT ?  
+    # [["jan", "978-4-7741-7568-3"], 
+    # 　["LIMIT", 1]]
+
     # 入力されたデータからオブジェクトを作成する
     # cd_paramsはメソッドではなくその返り値
     # (cd_params()の括弧を省略した形)
     # インスタンス変数に代入しているのはエラー時の表示処理のため
+    # pp cd_params
     @cd = Cd.new(cd_params)
 
     # respond_toメソッドは指定されたフォーマットに応じて
@@ -153,7 +162,7 @@ class CdsController < ApplicationController
     # フォームからの入力値を取得する
     def cd_params
       # 定型句として覚えろ
-      params.require(:cd).permit(:jan, :title, :price, :artist, :released, :is_major)
+      params.require(:cd).permit(:jan, :title, :price, :artist, :released, :is_major, :label)
       # 具体的な戻り値は以下のようなハッシュになる
       # { 
       #   "id"=>"51848956", 
