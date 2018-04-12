@@ -1,0 +1,10 @@
+<%# 親（参照先）モデルを参照する例 %>
+<%# 必要になった時点でSQLを再発行している点に注意 %>
+<h2>「<%= @review.cd.title %>」のレビュー</h2>
+<%# SELECT "cds".*  %>
+<%# FROM "cds"  %>
+<%# WHERE "cds"."id" = ? LIMIT ?   %>
+<%# [["id", 2],  %>
+ <%# ["LIMIT", 1]] %>
+<hr />
+<p><%= @review.body %>(<%= @review.updated_at %>)</p>

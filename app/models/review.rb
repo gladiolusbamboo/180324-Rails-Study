@@ -5,8 +5,13 @@ class Review < ApplicationRecord
   # これも同じ
   # enum status: {:draft, :published, :deleted}
 
+  # belongs_toは参照先（親モデル）を指定する
+  # cdモデルとlistnerモデルをつなぐ中間テーブルとして利用できる
   belongs_to :cd
-  belongs_to :listener
+  # カウンターキャッシュを使用することで
+  # テーブルを結合することなく子モデルの件数を取得することができる
+  # 子モデルのほうに設定を書くことに注意
+  belongs_to :listener, counter_cache: true
 
   default_scope{ order(updated_at: :desc) }
 end

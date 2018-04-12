@@ -1,0 +1,7 @@
+<h2>「<%= @cd.title %>」のアーティスト情報</h2>
+<hr />
+<ul>
+  <% @cd.artists.each do |artist| %>
+    <li><%= artist.name %>(<%= artist.birth %> | <%= artist.url %>)</li>
+  <% end %>
+</ul>

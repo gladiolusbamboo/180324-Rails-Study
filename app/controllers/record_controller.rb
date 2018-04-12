@@ -561,4 +561,154 @@ class RecordController < ApplicationController
     end
   end
 
+  def belongs
+    @review = Review.find(3)
+  end
+
+  def hasmany
+    @cd = Cd.find(1)
+  end
+
+  def hasone
+    @listener = Listener.find(1)
+  end
+
+  def has_and_belongs
+    @cd = Cd.find(2)
+  end
+
+  def has_many_through
+    @listener = Listener.find(2)
+  end
+
+  def cache_counter
+    @listener = Listener.find(1)
+    # 親テーブルと子モデルにカウンターキャッシュを設定していると
+    # sizeメソッドでテーブルを結合することなく子モデルの件数を取得できる
+    render plain: @listener.reviews.size
+    # 腑に落ちないSQLを発行している
+    # SELECT  "listeners".* 
+    # FROM "listeners" 
+    # WHERE "listeners"."id" = ? 
+    # LIMIT ?  
+    # [["id", 1], ["LIMIT", 1]]
+  end
+
+  # ポリモーフィックの例（A or B or C...の親モデルに子モデルを関連付ける）
+  # 別々のモデルにしたほうがいいんじゃねえかなあ
+  def memorize
+    @cd = Cd.find(1)
+    # begin transaction
+
+    # SELECT "cds".* 
+    # FROM "cds" 
+    # WHERE "cds"."id" = ? 
+    # LIMIT ? 
+    # [["id", 1], 
+    #  ["LIMIT", 1]]
+
+    # INSERT INTO "memos" 
+    #   ("memoable_type", "memoable_id", "body", "created_at", "updated_at") 
+    # VALUES 
+    #   (?, ?, ?, ?, ?)
+    # [["memoable_type", "Cd"], 
+    #  ["memoable_id", 1], 
+    #  ["body", "あとで買う"], 
+    #  ["created_at", "2018-04-12 06:58:57.466036"], 
+    #  ["updated_at", "2018-04-12 06:58:57.466036"]]
+
+    # commit transaction
+       
+    @memo = @cd.memos.build({body: 'あとで買う'})
+    if @memo.save
+      render plain: 'メモを作成しました'
+    else
+      render plain: @memo.errors.full_messages[0]
+    end
+  end
+
+  # 結合を明示する例（やりたくない）
+  def assoc_join
+    @cds = Cd.joins(:reviews, :artists)
+             .order('cds.title, reviews.updated_at')
+             .select('cds.*, reviews.body, artists.name')
+    # SELECT 
+    #   cds.*,
+    #   reviews.body, 
+    #   artists.name 
+    # FROM "cds" 
+    # INNER JOIN "reviews" 
+    # ON "reviews"."cd_id" = "cds"."id" 
+    # INNER JOIN "artists_cds" 
+    # ON "artists_cds"."cd_id" = "cds"."id" 
+    # INNER JOIN "artists" 
+    # ON "artists"."id" = "artists_cds"."artist_id" 
+    # ORDER BY 
+    #   cds.title, 
+    #   reviews.updated_at 
+    # LIMIT ?  
+    # [["LIMIT", 11]]
+  end
+
+  # 結合を明示する例２（reviewモデルを通じてcdモデルとlistenerモデルを結合する）
+  def assoc_join2
+    # :(コロン)が向き合う記法はどちらともシンボルを表している！
+    @cds = Cd.joins(reviews: :listener)
+             .select('cds.*, listeners.listenername')
+    # SELECT 
+    #   cds.*, 
+    #   listeners.listenername 
+    # FROM "cds" 
+    # INNER JOIN "reviews" 
+    # ON "reviews"."cd_id" = "cds"."id" 
+    # INNER JOIN "listeners" 
+    # ON "listeners"."id" = "reviews"."listener_id" 
+    # LIMIT ?  
+    # [["LIMIT", 11]]
+
+    render plain: @cds.inspect
+  end
+
+  # 結合を明示する例３（reviewモデルを通じてcdモデルとlistenerモデルを結合する）
+  def assoc_join3
+    @cds = Cd.joins('LEFT OUTER JOIN reviews ON reviews.cd_id = cds.id')
+             .select('cds.*, reviews.body')
+    # SELECT 
+    #   cds.*, 
+    #   reviews.body 
+    # FROM "cds" 
+    # LEFT OUTER JOIN reviews 
+    # ON reviews.cd_id = cds.id 
+    # LIMIT ? 
+    # [["LIMIT", 11]]   
+
+    render plain: @cds.inspect
+  end
+
+  # Rails5.0以降ではleft_outer_joinsメソッドも使える
+  def assoc_join4
+    @cds = Cd.left_outer_joins(:reviews)
+             .select('cds.*, reviews.body')
+    # SELECT 
+    #   cds.*, 
+    #   reviews.body 
+    # FROM "cds" 
+    # LEFT OUTER JOIN reviews 
+    # ON reviews.cd_id = cds.id 
+    # LIMIT ? 
+    # [["LIMIT", 11]]   
+    render plain: @cds.inspect
+  end
+
+  def assoc_includes
+    @cds = Cd.includes(:reviews).all
+    # あらかじめ必要なモデルをまとめて読み込んでおいてやる
+    # 結合は行っていない
+    # SELECT "cds".* FROM "cds"
+    # SELECT "reviews".* 
+    # FROM "reviews" 
+    # WHERE "reviews"."cd_id" 
+    # IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) 
+    # ORDER BY "reviews"."updated_at" DESC
+  end
 end

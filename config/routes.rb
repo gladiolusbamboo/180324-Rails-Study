@@ -193,4 +193,23 @@ Rails.application.routes.draw do
 
   get  'record/keywd'
   post 'record/keywd_process'
+
+  get  'record/belongs'
+
+  get  'record/hasmany'
+  get  'record/hasone'
+
+  get  'record/has_and_belongs'
+  get  'record/has_many_through'
+
+  get  'record/cache_counter'
+
+  get  'record/memorize'
+
+  get  'record/assoc_join'
+  get  'record/assoc_join2'
+  get  'record/assoc_join3'
+  get  'record/assoc_join4'
+
+  get  'record/assoc_includes'
 end

@@ -6,7 +6,8 @@ class CreateListeners < ActiveRecord::Migration[5.1]
       t.string :email
       t.boolean :is_male
       t.string :roles
-      t.integer :reviews_count
+      # カウンターキャッシュには０をデフォルトで設定してやる
+      t.integer :reviews_count, default: 0
 
       t.timestamps
     end

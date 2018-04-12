@@ -1,0 +1,27 @@
+<ul>
+  <li>ユーザー名：<%= @listener.listenername %></li>
+  <li>メールアドレス：<%= @listener.email %></li>
+  <% unless @listener.cds.empty? %>
+  <%# SELECT 1 AS one %>
+  <%# FROM "cds" %>
+  <%# INNER JOIN "reviews" %>
+  <%# ON "cds"."id" = "reviews"."cd_id" %>
+  <%# WHERE "reviews"."listener_id" = ? LIMIT ?   %>
+  <%# [["listener_id", 2],  %>
+   <%# ["LIMIT", 1]] %>
+  <li>レビューしたCD
+    <ul>
+    <% @listener.cds.each do |cd| %>
+    <%# SELECT "cds".*  %>
+    <%# FROM "cds"  %>
+    <%# INNER JOIN "reviews"  %>
+    <%# ON "cds"."id" = "reviews"."cd_id"  %>
+    <%# WHERE "reviews"."listener_id" = ?  %>
+    <%# ORDER BY "reviews"."updated_at" DESC   %>
+    <%# [["listener_id", 2]]     %>
+      <li><%= cd.title %></li>
+    <% end %>
+    </ul>
+  </li>
+  <% end %>
+</ul>

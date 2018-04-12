@@ -1,0 +1,10 @@
+<ul>
+<% @cds.each do |cd| %>
+<li>
+  <%= cd.title %>
+  (<% cd.reviews.each do |review| %>
+    <%= review.body %>
+  <% end %>)
+</li>
+<% end %>
+</ul>

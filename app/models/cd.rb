@@ -61,8 +61,13 @@ class Cd < ApplicationRecord
   #     errors.add(:jan, 'は正しい形式ではありません。')unless jan =~ /\A[0-9]{3}-[0-9]{1}-[0-9]{3,5}-[0-9]{4}-[0-9X]{1}\z/
   #   end
 
+  # has_mayは参照元（子モデル）テーブルを指定する
+  # モデル名が複数形になることに注意
   has_many :reviews
+  # has_and_belongs_to_manyは純粋な中間テーブルを指定する
   has_and_belongs_to_many :artists
+  # has_manyとthrough:で独自のフィールドを持つ中間テーブルを利用できる
+  # listenerモデルと多対多の関係にある
   has_many :listeners, through: :reviews
   has_many :memos, as: :memoable
 

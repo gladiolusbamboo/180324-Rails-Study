@@ -1,0 +1,16 @@
+<%# has_oneな子（参照元）モデルを参照する例 %>
+<%# やはり必要になった時点でSQLを再発行している %>
+<ul>
+  <li>ユーザー名：<%= @listener.listenername %>
+  <li>メールアドレス：<%= @listener.email %>
+  <% unless @listener.artist.nil? %>
+  <%# SELECT  "artists".*  %>
+  <%# FROM "artists"  %>
+  <%# WHERE "artists"."listener_id" = ?  %>
+  <%# LIMIT ?   %>
+  <%# [["listener_id", 1],  %>
+   <%# ["LIMIT", 1]] %>
+    <li>アーティスト名：<%= @listener.artist.name %></li>
+    <li>URL：<%= @listener.artist.url %></li>
+  <% end %>
+</ul>

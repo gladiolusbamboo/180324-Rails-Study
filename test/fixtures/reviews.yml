@@ -5,21 +5,21 @@ modernjs_1:
   cd_id: 1
   listener_id: 2
   status: 0
-  body: JavaScriptを使うなら、まず、目を通しておきたい本ですね。
+  body: 今回はハスキーボイスじゃないのか
 
 modernjs_2:
   id: 2
   cd_id: 1
   listener_id: 3
   status: 1
-  body: JavaScriptの基本を振り返りたいときにはこの本を頼りにしています。
+  body: さいとうりなって別のSSWの人いるよね
 
 jsp_1:
   id: 3
   cd_id: 2
   listener_id: 2
   status: 0
-  body: とても役に立ちます。サンプルたくさん紹介されていてお勧めの一冊です。
+  body: 宇宙団と東京カランコロンって関係あるんですか
 
 jsp_2:
   id: 4

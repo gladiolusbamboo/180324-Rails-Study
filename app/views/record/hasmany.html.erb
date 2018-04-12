@@ -1,0 +1,14 @@
+<%# 子（参照元）モデルを参照する例 %>
+<%# やはり必要になった時点でSQLを再発行している %>
+<h2>「<%= @cd.title %>」のレビュー</h2>
+<%# SELECT "reviews".*  %>
+<%# FROM "reviews"  %>
+<%# WHERE "reviews"."cd_id" = ?  %>
+<%# ORDER BY "reviews"."updated_at" DESC %>
+<%# [["cd_id", 1]] %>
+<hr />
+<ul>
+<% @cd.reviews.each do |review| %>
+  <li><%= review.body %>(<%= review.updated_at %>)</li>
+<% end %>
+</ul>
