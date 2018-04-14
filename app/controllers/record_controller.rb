@@ -711,4 +711,9 @@ class RecordController < ApplicationController
     # IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) 
     # ORDER BY "reviews"."updated_at" DESC
   end
+
+  def attr
+    @cd = Cd.find(1)
+    render plain: @cd.price.class
+  end
 end

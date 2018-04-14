@@ -212,4 +212,6 @@ Rails.application.routes.draw do
   get  'record/assoc_join4'
 
   get  'record/assoc_includes'
+
+  get  'record/attr'
 end

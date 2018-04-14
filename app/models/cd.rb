@@ -1,4 +1,8 @@
 class Cd < ApplicationRecord
+  # モデル側でデータ型を修正することもできる
+  # あんまりやらないほうがいい気がする
+  attribute :price, :float
+
   # バリデーションルールはモデルに設定する
   validates :jan,
     # 必須
