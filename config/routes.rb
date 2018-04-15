@@ -214,4 +214,18 @@ Rails.application.routes.draw do
   get  'record/assoc_includes'
 
   get  'record/attr'
+
+  get  'ctrl/para(/:id)', to: 'ctrl#para'
+
+  get  'ctrl/para_array'
+  get  'ctrl/para_hash'
+
+  get  'ctrl/req_head'
+  get  'ctrl/req_head2'
+
+  get  'ctrl/upload'
+  post 'ctrl/upload_process'
+
+  get  'ctrl/updb(/:id)', to: 'ctrl#updb'
+  patch 'ctrl/updb_process(/:id)', to: 'ctrl#updb_process'
 end

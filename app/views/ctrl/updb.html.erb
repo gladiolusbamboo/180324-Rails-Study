@@ -1,0 +1,6 @@
+<%= form_for(@artist, url: { action: :updb_process, id: @artist },
+  html:{ multipart: true }) do |f| %>
+  <%= f.label :data, 'アー写：' %>
+  <%= f.file_field :data %>
+  <%= f.submit 'アップロード' %>
+<% end %>

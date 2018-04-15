@@ -12,4 +12,24 @@ class Artist < ApplicationRecord
 
   has_many :memos, as: :memoable
 
+  validate :file_invalid?
+
+  # 'data='がメソッドの名前。
+  # Rubyでは代入可能なメソッドをこのように定義する
+  # data = XXX という記法で呼び出すことができる
+  # よくわからんが、
+  # @artist.update(params.require(:artist).permit(:data))
+  # でこのメソッドが呼び出されている
+  def data=(data)
+    # pp ('data=呼び出し')
+    self.ctype = data.content_type
+    self.photo = data.read
+  end
+
+  private 
+    def file_invalid?
+      ps = ['image/jpeg', 'image/gif', 'image/png']
+      errors.add(:photo, 'は画像ファイルではありません。') if !ps.include?(self.ctype)
+      errors.add(:photo, 'のサイズが1MBを超えています。') if self.photo.length > 1.megabyte
+    end
 end

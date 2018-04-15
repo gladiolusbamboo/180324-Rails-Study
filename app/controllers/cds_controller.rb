@@ -162,6 +162,7 @@ class CdsController < ApplicationController
     # フォームからの入力値を取得する
     def cd_params
       # 定型句として覚えろ
+      # permitメソッドに渡されているフィールドのみ新規作成や一括変更が可能になる
       params.require(:cd).permit(:jan, :title, :price, :artist, :released, :is_major, :label)
       # 具体的な戻り値は以下のようなハッシュになる
       # { 
