@@ -71,4 +71,20 @@ class CtrlController < ApplicationController
     end
   end
 
+  def show_photo
+    @artist = Artist.find(1)
+    # DBに保存したバイナリデータを出力する例
+    send_data @artist.photo, type: @artist.ctype, disposition: :inline
+  end
+
+  def log
+    logger.unknown('unknown')
+    logger.fatal('fatal')
+    logger.error('error')
+    logger.warn('warn')
+    logger.info('info')
+    logger.debug('debug')
+    render plain: 'ログはコンソール、またはログファイルから確認してください。'
+  end
+
 end

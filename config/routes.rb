@@ -228,4 +228,26 @@ Rails.application.routes.draw do
 
   get  'ctrl/updb(/:id)', to: 'ctrl#updb'
   patch 'ctrl/updb_process(/:id)', to: 'ctrl#updb_process'
+
+  get  'view/render1'
+  get  'view/render2'
+  get  'view/render3'
+  get  'view/render4'
+
+  get  'view/render_head'
+
+  get  'view/redirect'
+
+  get  'view/index'
+
+  get  'view/redirectback'
+
+  get  'view/sendfile'
+
+  get  'ctrl/show_photo'
+
+  get  'ctrl/log'
+
+  # passwordパラメーターはfilteredとログに記録される
+  get  'listeners/:id/:password', to: 'listeners#show'
 end
