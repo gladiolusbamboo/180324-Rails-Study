@@ -250,4 +250,9 @@ Rails.application.routes.draw do
 
   # passwordパラメーターはfilteredとログに記録される
   get  'listeners/:id/:password', to: 'listeners#show'
+
+  get  'ctrl/get_xml'
+  get  'ctrl/get_json'
+
+  get  'ctrl/download'
 end

@@ -87,4 +87,22 @@ class CtrlController < ApplicationController
     render plain: 'ログはコンソール、またはログファイルから確認してください。'
   end
 
+  # モデル情報をXML形式で表示する例
+  def get_xml
+    @cds = Cd.all
+    render xml: @cds
+    # 文字列で出力することもできる
+    # render xml: '<error>123 Failed</error>'
+  end
+
+  # モデル情報をJSON形式で表示する例
+  def get_json
+    @cds = Cd.all
+    render json: @cds
+  end
+
+  def download
+    @cds = Cd.all
+  end
+  
 end
