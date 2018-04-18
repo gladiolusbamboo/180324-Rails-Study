@@ -255,4 +255,13 @@ Rails.application.routes.draw do
   get  'ctrl/get_json'
 
   get  'ctrl/download'
+
+  get  'ctrl/cookie'
+  post 'ctrl/cookie_rec'
+
+  get  'ctrl/session_show'
+  post 'ctrl/session_rec'
+
+  get  'ctrl/active_record_store_show'
+  post 'ctrl/active_record_store_rec'
 end

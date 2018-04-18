@@ -68,7 +68,19 @@ class CdsController < ApplicationController
         # (@cdはオブジェクトのキー値と解釈される)
         # またオプションとしてデータを渡すことで
         # ビューテンプレートからローカル変数っぽく利用できる
+
+        # フラッシュという仕組みを利用することで
+        # リダイレクト先のビューの
+        # <%= notice %>でメッセージを表示させることができる
+
+        # 警告やエラーメッセージの場合はalertオプションを使う
         format.html { redirect_to @cd, notice: 'Cd was successfully created.' }
+
+        # flashメソッドを利用する方法
+        # flash[:msg] = 'Book was successfully created.'
+        # リダイレクト先のビューでの利用方法
+        # <%= flash[:msg] %>
+
         # 指定されたフォーマットがJSONなら
         # show.json.builderで新規作成されたデータをJSON形式で出力する
         # status:はステータスコード

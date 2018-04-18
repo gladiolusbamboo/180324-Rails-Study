@@ -104,5 +104,50 @@ class CtrlController < ApplicationController
   def download
     @cds = Cd.all
   end
+
+  # cookie_recが実行されていると
+  # 以前登録したメールアドレスを取得することができる
+  def cookie
+    @email = cookies[:email]
+  end
+
+  def cookie_rec
+    # クッキー:emailをセット
+    # expires : 有効期限
+    # httponly : http通信のみでクッキーが取得できる。XSS対策にもなる
+    cookies[:email] = {value: params[:email], expires: 3.months.from_now, http_only: true }
+    render plain: 'クッキーを保存しました。'
+    # クッキーの削除
+    # cookies.delete(:email)
+
+    # 永続化クッキー（20年）
+    # cookies.permanent[:email] = {value: ...}
+    # 暗号化クッキー
+    # 暗号化キーはconfig/secrets.ymlに設定されている
+    # production環境では環境変数を設定してやらないと動作しないので注意
+    # cookies.encrypted[:email] = {value: ...}
+  end
   
+  # session_recが実行されていると
+  # 以前登録したメールアドレスを取得することができる
+  def session_show
+    @email = session[:email]
+  end
+
+  def session_rec
+    # セッションにemailをセット
+    # デフォルトでクッキーストアに保存する
+    session[:email] = params[:email]
+    render plain: 'セッションを保存しました'
+  end
+
+  def active_record_store_show
+    @email = session[:email]
+  end
+
+  def active_record_store_rec
+    session[:email] = params[:email]
+    render plain: 'セッションを保存しました'
+  end
+
 end
