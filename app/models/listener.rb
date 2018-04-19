@@ -1,4 +1,5 @@
 class Listener < ApplicationRecord
+  has_secure_password
   # 新規登録のときだけ検証を行う。
   # 他にupdate,save（デフォルト値）が指定できる
   validates :agreement, acceptance: { on: :create }

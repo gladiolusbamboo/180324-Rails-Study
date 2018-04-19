@@ -1,4 +1,17 @@
 class CtrlController < ApplicationController
+  # 各アクションの開始時／終了時に実行するメソッド
+  # before_actionでrenderやredirect_toメソッドを
+  # 実行することでアクション本体を実行させないこともできる
+  # before_action :start_logger, only: [:index]
+  # after_action :end_logger, except: :index
+  # まとめてaround_actionを利用する例
+  # around_action :around_logger
+
+  # skip_before_action,skip_after_actionなどで
+  # 基底クラスから継承したフィルターを除外することもできる
+
+  before_action :auth, only: :index
+
   def para
     # http://localhost:3000/ctrl/para/108
     # id:108を取得する
@@ -150,4 +163,38 @@ class CtrlController < ApplicationController
     render plain: 'セッションを保存しました'
   end
 
+  def index
+    sleep 3
+    render plain: 'indexアクションが実行されました'
+  end
+
+  private 
+    # スタート時間を記録
+    def start_logger
+      logger.debug('[Start]' + Time.now.to_s)
+    end
+
+    # フィニッシュ時間を記録
+    def end_logger
+      logger.debug('[Finish]' + Time.now.to_s)
+    end
+
+    # around_actionを使用した場合
+    def around_logger
+      logger.debug('[Sta]' + Time.now.to_s)
+      yield
+      logger.debug('[Fin]' + Time.now.to_s)
+    end
+
+    def auth
+      name = 'kreva'
+      # パスワードはあらかじめ暗号化しておくが
+      # ここでは省略
+      passwd = 'caloriemateplease'
+
+      # 引数はレルム名（って何）
+      authenticate_or_request_with_http_basic('Railsbook') do |n, p|
+        n == name && p == passwd
+      end
+    end
 end

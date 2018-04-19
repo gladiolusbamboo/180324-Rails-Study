@@ -57,3 +57,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem  'activemodel-serializers-xml'
 
 gem 'activerecord-session_store'
+
+gem 'bcrypt'

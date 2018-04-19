@@ -264,4 +264,11 @@ Rails.application.routes.draw do
 
   get  'ctrl/active_record_store_show'
   post 'ctrl/active_record_store_rec'
+
+  get  'ctrl/index'
+
+  get 'login/index'
+  post 'login/auth'
+  get 'login/logout'
+
 end

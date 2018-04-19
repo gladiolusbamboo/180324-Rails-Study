@@ -3,6 +3,9 @@ class YahooController < ApplicationController
   # 不必要なアクションメソッドは省略可能。
   # 省略した場合、直接テンプレートファイルを実行してくれる
 
+  # yahoo/viewにアクセスすると認証処理が行われる
+  before_action :check_logined, only: :view
+
   # クライアントからのリクエストに対して
   # 具体的な処理を実行するメソッドを
   # アクションメソッドといい、
@@ -42,4 +45,25 @@ class YahooController < ApplicationController
     # でアプリ固有の設定情報をMY_APPに読み込んでいる
     render plain: MY_APP['hatena_blog']['title'] + '：' + MY_APP['hatena_blog']['url']
   end
+
+  private
+    def check_logined
+      # logger.debug('START:check_logined')
+      # セッション情報に:usrが含まれていれば
+      if session[:usr]
+        # ユーザー情報を取得し
+        begin
+          @usr = Listener.find(session[:usr])
+        # 失敗したらセッション情報を破棄する
+        rescue ActiveRecord::RecordNotFound
+          reset_session
+        end
+      end
+      # ユーザー情報を取得できなかった場合にはログインページへ
+      unless @usr
+        # flashを使って、リクエスト元のページの情報を共有する
+        flash[:referer] = request.fullpath
+        redirect_to controller: :login, action: :index
+      end
+    end
 end
