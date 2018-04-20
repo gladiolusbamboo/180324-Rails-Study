@@ -87,14 +87,13 @@ class Cd < ApplicationRecord
 
   # コールバックの定義例
   after_destroy :history_book
-  private do
+  private
     # Cdモデルがdestroyされると呼び出される関数
     def history_book
       logger.info('deleted: ' + self.inspect)
       # 以下のようなログがコンソールやlog/development.logに出力される
       # deleted: #<Cd id: 9, jan: "978-4-7741-7568-3", title: "KICK!", price: 3700, label: "ビクターエンタテインメント", released: "2015-08-19", is_major: false, created_at: "2018-04-12 05:06:48", updated_at: "2018-04-12 05:06:48">
     end
-  end
 
   # 他の書き方１
   # after_destroy do |b|

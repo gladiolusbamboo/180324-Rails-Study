@@ -271,4 +271,8 @@ Rails.application.routes.draw do
   post 'login/auth'
   get 'login/logout'
 
+  get  'ctrl/device'
+
+  get  'sample/index'
+
 end

@@ -74,7 +74,7 @@ class CdsController < ApplicationController
         # <%= notice %>でメッセージを表示させることができる
 
         # 警告やエラーメッセージの場合はalertオプションを使う
-        format.html { redirect_to @cd, notice: 'Cd was successfully created.' }
+        format.html { redirect_to @cd, info: 'Cd was successfully created.' }
 
         # flashメソッドを利用する方法
         # flash[:msg] = 'Book was successfully created.'

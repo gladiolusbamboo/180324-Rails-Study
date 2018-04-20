@@ -1,4 +1,7 @@
 class Listener < ApplicationRecord
+  # 認証機能を有効にする
+  
+
   has_secure_password
   # 新規登録のときだけ検証を行う。
   # 他にupdate,save（デフォルト値）が指定できる
