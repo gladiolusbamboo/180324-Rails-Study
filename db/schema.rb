@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20180418063457) do
   end
 
   create_table "cds", force: :cascade do |t|
-    t.string "jan"
-    t.string "title"
-    t.integer "price"
-    t.string "label"
+    t.string "jan", limit: 17, null: false
+    t.string "title", limit: 100, null: false
+    t.decimal "price", precision: 5
+    t.string "label", limit: 20, default: "サザナミレーベル"
     t.date "released"
     t.boolean "is_major"
     t.datetime "created_at", null: false
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20180418063457) do
     t.string "email"
     t.boolean "is_male"
     t.string "roles"
-    t.integer "reviews_count"
+    t.integer "reviews_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180418063457) do
   create_table "reviews", force: :cascade do |t|
     t.integer "cd_id"
     t.integer "listener_id"
-    t.integer "status"
+    t.integer "status", default: 0, null: false
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # レイアウトを自分で作成する場合は、csrf_meta_tagsメソッドの呼び出しを忘れない
   protect_from_forgery with: :exception
   # すべてのコントローラー(login覗く)でログインチェックを必須にする
-  before_action :check_logined
+  # before_action :check_logined
   before_action :detect_device
 
   # RecordNotFoundが補足されると
